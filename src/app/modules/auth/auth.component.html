@@ -1,0 +1,87 @@
+<main class="container-fluid min-vh-100">
+  <div class="row min-vh-100">
+
+    <!-- Lado izquierdo (imagen o mensaje de bienvenida) -->
+    <section class="col-lg-6 d-none d-lg-flex position-relative overflow-hidden bg-body-secondary">
+      <div class="position-absolute circles"></div>
+      <div class="position-relative p-5 text-white d-flex flex-column justify-content-between h-100">
+        <h1 class="display-4 fw-bold">Welcome Back</h1>
+        <div class="feature-text">
+          <h3>Secure Login System</h3>
+          <p class="text-muted">Experience enhanced security with our modern authentication system</p>
+        </div>
+        <footer class="mt-auto">
+          <p class="text-muted">Don't have an account? <a href="#" class="text-decoration-none">Sign up</a></p>
+        </footer>
+      </div>
+    </section>
+
+    <!-- Lado derecho (formulario de login) -->
+    <section class="col-12 col-lg-6 bg-white">
+      <div class="login-container p-4 p-md-5">
+
+        <!-- Encabezado del formulario -->
+        <header class="mb-5">
+          <h2 class="fw-bold mb-3">Sign In</h2>
+          <p class="text-muted">Please enter your credentials to continue</p>
+        </header>
+
+        <!-- Formulario de login -->
+        <form class="needs-validation" novalidate>
+          <!-- Input de email -->
+          <app-input type="email" id="emailInput" label="Email address" placeholder="name@example.com"
+            class="custom-class" variant="is-invalid" feedback="Please enter a valid email address">
+          </app-input>
+
+
+          <!-- Input de password -->
+          <div class="form-floating mb-4 password-field">
+            <input type="password" class="form-control" id="passwordInput" placeholder="Password" required>
+            <label for="passwordInput"><i class="bi bi-lock me-2"></i>Password</label>
+            <button type="button" class="btn password-toggle" aria-label="Toggle password visibility">
+              <i class="bi bi-eye"></i>
+            </button>
+            <div class="password-strength mt-2 d-none">
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recordarme y link de olvido de contraseña -->
+          <div class="d-flex justify-content-between mb-4">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="rememberMe">
+              <label class="form-check-label" for="rememberMe">Remember me</label>
+            </div>
+            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Forgot
+              password?</a>
+          </div>
+
+          <!-- Botón de submit -->
+          <button type="submit" class="btn btn-primary w-100 py-3 mb-4">
+            <span class="spinner-border spinner-border-sm d-none me-2" role="status"></span>
+            Sign In
+          </button>
+
+          <!-- Login social -->
+          <div class="social-login text-center">
+            <p class="text-muted mb-4">Or continue with</p>
+            <div class="d-flex gap-3 justify-content-center">
+              <button type="button" class="btn btn-outline-secondary" aria-label="Login with Google">
+                <i class="bi bi-google"></i>
+              </button>
+              <button type="button" class="btn btn-outline-secondary" aria-label="Login with Facebook">
+                <i class="bi bi-facebook"></i>
+              </button>
+              <button type="button" class="btn btn-outline-secondary" aria-label="Login with Apple">
+                <i class="bi bi-apple"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </div>
+</main>

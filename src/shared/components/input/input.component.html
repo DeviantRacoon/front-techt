@@ -1,0 +1,17 @@
+<div class="form-floating mb-4">
+  <input
+    [type]="type"
+    [id]="id"
+    [placeholder]="placeholder"
+    [class]="class"
+    [required]="required"
+    class="form-control"
+  >
+  <label [for]="id">
+    <i *ngIf="type === 'email'" class="bi bi-envelope me-2"></i>
+    {{ label }}
+  </label>
+  <div *ngIf="feedback" class="invalid-feedback">
+    {{ feedback }}
+  </div>
+</div>
