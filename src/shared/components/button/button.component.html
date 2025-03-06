@@ -1,0 +1,10 @@
+<button [type]="type" class="btn" [ngClass]="[ 'btn-' + variant,
+    size === 'sm' ? 'btn-sm' : size === 'lg' ? 'btn-lg' : '',
+    class
+  ]" [disabled]="loading">
+  <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+
+  <i *ngIf="icon" [class]="icon + ' me-2'"></i>
+
+  {{ label }}
+</button>

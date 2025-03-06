@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
-import { InputComponent } from 'src/shared/components/input/input.component';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
 })
 export class AuthComponent {
+  credentials: { email: string, password: string } = { email: '', password: '' };
 
   constructor() { }
+
+  login(credentials: { email: string, password: string }) {
+    console.log(credentials);
+  }
 
 }

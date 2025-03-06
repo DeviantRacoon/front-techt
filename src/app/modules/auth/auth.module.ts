@@ -9,14 +9,15 @@ import { AuthComponent } from './auth.component';
 import { AuthRoutes } from './auth.routing';
 
 // Standard
-import { InputComponent } from 'src/shared/components/input/input.component';
+import { InputComponent, ButtonComponent } from 'src/shared/components';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     AuthRoutes,
-    InputComponent
+    InputComponent,
+    ButtonComponent
   ],
   declarations: [AuthComponent],
   exports: [AuthComponent]

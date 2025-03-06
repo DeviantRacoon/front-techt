@@ -1,16 +1,97 @@
-<div class="form-floating mb-4">
+<!-- Si es checkbox o radio -->
+<div *ngIf="type === 'checkbox' || type === 'radio'" class="form-check">
   <input
     [type]="type"
     [id]="id"
-    [placeholder]="placeholder"
-    [class]="class"
-    [required]="required"
-    class="form-control"
-  >
-  <label [for]="id">
-    <i *ngIf="type === 'email'" class="bi bi-envelope me-2"></i>
+    [(ngModel)]="value"
+    (input)="onChange(value)"
+    (blur)="onTouched()"
+    class="form-check-input"
+  />
+  <label [for]="id" class="form-check-label">
+    <i *ngIf="icon" [class]="icon + ' me-2'"></i>
     {{ label }}
   </label>
+</div>
+
+<!-- Si es date o datetime-local -->
+<div *ngIf="type === 'date' || type === 'datetime-local'">
+  <label [for]="id" class="form-label">
+    <i *ngIf="icon" [class]="icon + ' me-2'"></i>
+    {{ label }}
+  </label>
+  <input
+    [type]="type"
+    [id]="id"
+    [(ngModel)]="value"
+    (input)="onChange(value)"
+    (blur)="onTouched()"
+    [class.is-invalid]="feedback"
+    class="form-control"
+  />
+</div>
+
+<!-- Si es teléfono o número (solo números permitidos) -->
+<div *ngIf="type === 'tel' || type === 'number'" class="form-floating">
+  <input
+    [type]="type"
+    [id]="id"
+    [(ngModel)]="value"
+    (input)="restrictInput($event)"
+    (blur)="onTouched()"
+    [placeholder]="placeholder"
+    [required]="required"
+    [class.is-invalid]="feedback"
+    [attr.maxlength]="maxLength"
+    class="form-control"
+  />
+  <label [for]="id">
+    <i *ngIf="icon" [class]="icon + ' me-2'"></i>
+    {{ label }}
+  </label>
+  <div *ngIf="maxLength" class="form-text text-end">
+    ({{ value.length }}/{{ maxLength }})
+  </div>
+  <div *ngIf="feedback" class="invalid-feedback">
+    {{ feedback }}
+  </div>
+</div>
+
+<!-- Input estándar con floating (text, email, password, etc.) -->
+<div *ngIf="type !== 'checkbox' && type !== 'radio' && type !== 'date' && type !== 'datetime-local' && type !== 'tel' && type !== 'number'" class="form-floating position-relative">
+  <input
+    [type]="type === 'password' && !isPasswordVisible ? 'password' : 'text'"
+    [id]="id"
+    [(ngModel)]="value"
+    (input)="onChange(value)"
+    (blur)="onTouched()"
+    [placeholder]="placeholder"
+    [required]="required"
+    [class.is-invalid]="feedback"
+    [attr.maxlength]="maxLength"
+    class="form-control"
+  />
+  <label [for]="id">
+    <i *ngIf="type === 'password'" class="fa fa-lock me-2"></i>
+    <i *ngIf="icon" [class]="icon + ' me-2'"></i>
+    {{ label }}
+  </label>
+
+  <!-- Botón de mostrar contraseña -->
+  <i 
+    *ngIf="type === 'password'" 
+    type="button" 
+    [style]="{ top: '50%', transform: 'translateY(-50%)' }"
+    class="position-absolute end-0 me-3"
+    (click)="togglePassword()"
+    aria-label="Toggle password visibility">
+    <i class="fa" [ngClass]="{'fa-eye': isPasswordVisible, 'fa-eye-slash': !isPasswordVisible}"></i>
+  </i>
+
+  <small *ngIf="maxLength" class="position-absolute bottom-0 end-0 me-2 mb-1 form-text text-end text-body-tertiary">
+    ({{ value.length }}/{{ maxLength }})
+  </small>
+
   <div *ngIf="feedback" class="invalid-feedback">
     {{ feedback }}
   </div>
