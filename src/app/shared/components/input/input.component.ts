@@ -25,6 +25,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() feedback: string = '';
   @Input() maxLength?: number;
   @Input() minLength?: number;
+  @Input() size: 'sm' | 'md' | 'lg' = 'md';
 
   value: any = '';
   isPasswordVisible: boolean = false;

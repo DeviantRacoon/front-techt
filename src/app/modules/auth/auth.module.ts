@@ -5,11 +5,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 // Component
-import { AuthComponent } from './auth.component';
+import { AuthComponent } from './login/auth.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+
 import { AuthRoutes } from './auth.routing';
 
 // Standard
-import { InputComponent, ButtonComponent } from 'src/shared/components';
+import { InputComponent, ButtonComponent } from 'src/app/shared/components';
 
 @NgModule({
   imports: [
@@ -19,7 +21,7 @@ import { InputComponent, ButtonComponent } from 'src/shared/components';
     InputComponent,
     ButtonComponent
   ],
-  declarations: [AuthComponent],
-  exports: [AuthComponent]
+  declarations: [AuthComponent, ForgotPasswordComponent],
+  exports: []
 })
 export class AuthModule { }

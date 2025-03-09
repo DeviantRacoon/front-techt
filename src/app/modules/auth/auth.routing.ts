@@ -1,12 +1,18 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthComponent } from './auth.component';
+// Component
+import { AuthComponent } from './login/auth.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AuthComponent
+    component: AuthComponent,
   },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent
+  }
 ];
 
 export const AuthRoutes = RouterModule.forChild(routes);

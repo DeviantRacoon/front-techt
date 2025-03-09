@@ -1,0 +1,53 @@
+.sidebar-nav {
+  width: 280px;
+  height: 100vh;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0);
+}
+
+.sidebar-nav.active {
+  transform: translateX(-90%);
+}
+.nav-link {
+  color: var(--foreground);
+  border-radius: 8px;
+  margin: 0 15px;
+  transition: background 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  background: var(--sidebar-hover);
+}
+
+.active > .nav-link {
+  background: var(--sidebar-active);
+  color: var(--accent);
+}
+
+.submenu {
+  background: var(--background);
+}
+
+.menu-arrow {
+  transition: transform 0.3s ease;
+  transform: scale(0.8);
+}
+
+[aria-expanded="true"] .menu-arrow {
+  transform: rotate(180deg);
+}
+
+.toggle-btn {
+  position: absolute;
+  right: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  z-index: 1001;
+}
+
+.input-menu-search {
+  box-shadow: none;
+  border: none;
+}

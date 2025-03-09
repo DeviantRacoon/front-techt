@@ -6,5 +6,5 @@
 
   <i *ngIf="icon" [class]="icon + ' me-2'"></i>
 
-  {{ label }}
+  <span *ngIf="!loading">{{ label }}</span>
 </button>

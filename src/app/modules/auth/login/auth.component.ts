@@ -6,11 +6,17 @@ import { Component } from '@angular/core';
 })
 export class AuthComponent {
   credentials: { email: string, password: string } = { email: '', password: '' };
+  loading: 'idle' | 'pending' | 'success' | 'error' = 'idle';
 
   constructor() { }
 
   login(credentials: { email: string, password: string }) {
-    console.log(credentials);
-  }
+    this.loading = 'pending';
+
+    setTimeout(() => {
+      console.log(credentials);
+      this.loading = 'error';
+    }, 2000);
+  };
 
 }

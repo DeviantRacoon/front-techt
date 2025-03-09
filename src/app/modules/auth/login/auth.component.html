@@ -1,0 +1,52 @@
+<main class="container-fluid min-vh-100">
+  <div class="row min-vh-100">
+
+    <!-- Lado izquierdo (imagen o mensaje de bienvenida) -->
+    <section class="col-lg-6 d-none d-lg-flex position-relative overflow-hidden bg-info">
+      <div class="position-absolute circles"></div>
+      <div class="position-relative p-5 text-white d-flex flex-column justify-content-between h-100">
+        <h1 class="display-2 fw-bold">Bienvenido</h1>
+        <div class="feature-text">
+          <h3>Enhanced Security</h3>
+          <p class="text-muted">
+            Experience enhanced security with our modern authentication system
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lado derecho (formulario de login) -->
+    <section class="col-12 col-lg-6 bg-body">
+      <div class="d-flex flex-column justify-content-center p-4 p-md-5 h-100">
+
+        <!-- Encabezado del formulario -->
+        <header class="mb-3">
+          <h2 class="fw-bold mb-3">Bienvenido</h2>
+          <p class="text-muted">Por favor ingresa tus credenciales</p>
+        </header>
+
+        <!-- Formulario de login -->
+        <form class="needs-validation d-flex flex-column gap-3"
+          (ngSubmit)="login({ email: loginEmail.value, password: loginPassword.value })">
+
+          <div class="d-flex flex-column gap-3 position-relative">
+            <app-input #loginEmail id="login-email" type="email" label="Correo" icon="fa fa-envelope"
+              [feedback]="loading === 'error' ? ' ' : ''" 
+              [required]="true"></app-input>
+
+            <app-input #loginPassword id="login-password" type="password" label="Contraseña"
+              [feedback]="loading === 'error' ? ' ' : ''" 
+              [required]="true"></app-input>
+
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <a [routerLink]="['/auth/forgot-password']" class="text-decoration-none">Olvide mi contraseña</a>
+          </div>
+
+          <app-button type="submit" [loading]="loading === 'pending'" label="Ingresar" class="w-100 py-2"></app-button>
+        </form>
+      </div>
+    </section>
+  </div>
+</main>
