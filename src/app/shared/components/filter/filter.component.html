@@ -1,0 +1,38 @@
+<article class="card shadow border-0 rounded bg-body-tertiary my-2">
+  <div class="d-flex align-items-center justify-content-end gap-2 p-2">
+
+    <div class="input-group w-50 rounded shadow-sm">
+      <input type="text" class="form-control shadow-none bg-white border-0" [placeholder]="searchQuery.placeholder">
+      <span class="input-group-text border-0 shadow-none bg-white" id="search-icon-button">
+        <i class="fa fa-search" style="cursor: pointer;"></i>
+      </span>
+    </div>
+
+    <!-- Dropdown de Filtros -->
+    <div class="dropdown">
+      <button class="btn btn-secondary border-0 shadow-sm" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="assets/svg/filter-outline.svg" alt="filter" loading="lazy" width="20">
+      </button>
+
+      <ul class="dropdown-menu p-3 bg-body border-0 rounded shadow-sm mt-1" style="width: 400px;"
+        (click)="$event.stopPropagation()">
+        <li><strong class="d-block mb-4">Filtros</strong></li>
+        <li *ngFor="let filter of filters" class="d-flex gap-4 justify-content-center align-items-center mb-2">
+          <label class="form-label text-start w-25 my-auto">{{filter.label}}</label>
+          <select class="form-select" aria-label="Default select example">
+            <option selected disabled>Selecciona una opción</option>
+            <option *ngFor="let option of filter.options" [value]="option.value">{{option.label}}</option>
+          </select>
+        </li>
+        
+        <li><button class="btn btn-primary w-100 mt-2">Aplicar Filtros</button></li>
+      </ul>
+    </div>
+
+    <!-- Ordenamiento -->
+    <button class="btn btn-secondary border-0 shadow-sm" (click)="toggleOrder()">
+      <i class="fa fa-sort"></i>
+    </button>
+
+  </div>
+</article>

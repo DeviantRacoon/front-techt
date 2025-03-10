@@ -1,0 +1,137 @@
+<article class="card shadow-none border-0">
+
+  <!-- Header Actions -->
+  <div class="d-flex card-header bg-transparent justify-content-end pb-3 px-0 gap-2">
+    <span *ngIf="selectedItems.size" class="d-flex gap-2">
+      <button [class]="'btn btn-' + action.color" *ngFor="let action of selectedActions" class="shadow-md"
+        (click)="action.cta(selectedItems)">
+        <i [class]="action.icon"></i> {{ action.label }}
+      </button>
+    </span>
+    <button [class]="'btn btn-' + action.variant" *ngFor="let action of headerActions" (click)="action.cta()"
+      class="shadow-md">
+      <i [class]="action.icon"></i> {{ action.label }}
+    </button>
+  </div>
+
+  <!-- Tabla -->
+  <div class="card-bod p-0" style="width: 100%;">
+    <div class="table-responsive table-container">
+      <table class="table shadow-none rounded" [ngClass]="loading ? 'cursor-wait' : 'table-hover'">
+
+        <thead>
+
+          <tr class="align-middle">
+            <th class="py-2 text-start" style="width: 10px;">
+              <input type="checkbox" (change)="toggleSelectAll()">
+            </th>
+            <th *ngFor="let column of columns" class="text-muted" [ngClass]="'text-' + column.textAlign"
+              [ngStyle]="{ width: getColumnSize(column?.size) }">
+              {{ column.name }}
+            </th>
+            <th *ngIf="actions.length > 0" class="text-end" style="width: 10px;"></th>
+          </tr>
+
+        </thead>
+
+        <tbody *ngIf="!loading">
+          <tr *ngFor="let item of row" class="align-middle">
+
+            <td class="py-3 text-start" [ngClass]="selectedItems.has(item.id) ? 'bg-body-secondary' : ''">
+              <input type="checkbox" [checked]="selectedItems.has(item.id)" (change)="toggleSelection(item.id)">
+            </td>
+
+            <td *ngFor="let column of columns" [ngClass]="'text-' + column.textAlign + ' text-' + column.textVariant"
+              [class]="selectedItems.has(item.id) ? 'bg-body-secondary' : ''"
+              [ngStyle]="{ width: getColumnSize(column.size) }">
+              <ng-container [ngSwitch]="column.type">
+                <span *ngSwitchCase="'money'">{{ item[column.key] === null ? column.defaultValue : (item[column.key] |
+                  currency) }}</span>
+                <span *ngSwitchCase="'date'">{{ item[column.key] === null ? column.defaultValue : (item[column.key] |
+                  date) }}</span>
+                <span *ngSwitchCase="'datetime'">{{ item[column.key] === null ? column.defaultValue : (item[column.key]
+                  | date: 'short') }}</span>
+                <span *ngSwitchCase="'status'">
+                  <span appStatusChip [status]="item[column.key] === null ? column.defaultValue : item[column.key]">{{
+                    item[column.key] === null ? column.defaultValue : item[column.key] }}</span>
+                </span>
+                <span *ngSwitchDefault>{{ item[column.key] === null ? column.defaultValue : item[column.key] }}</span>
+              </ng-container>
+            </td>
+
+            <td *ngIf="actions.length > 0" class="text-end"
+              [ngClass]="selectedItems.has(item.id) ? 'bg-body-secondary' : ''">
+              <div class="dropdown" style="cursor: pointer;">
+                <img src="assets/svg/ellipsis-horizontal-outline.svg" width="20" loading="lazy"
+                  data-bs-toggle="dropdown">
+                <ul class="dropdown-menu">
+                  <li *ngFor="let action of actions">
+                    <button class="dropdown-item" (click)="action.cta(item)">
+                      <i [class]="action.icon + ' me-2'"></i>{{ action.label }}
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </td>
+
+          </tr>
+        </tbody>
+
+        <tbody *ngIf="loading">
+          <tr *ngFor="let _ of skeletonLoader" class="align-middle">
+            <td class="py-3">
+              <div class="skeleton-loader skeleton-checkbox"></div>
+            </td>
+
+            <td *ngFor="let column of columns">
+              <div class="skeleton-loader skeleton-text"></div>
+            </td>
+
+            <td *ngIf="actions.length > 0" class="text-end">
+              <div class="skeleton-loader skeleton-icon"></div>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+
+  <div class="card-footer bg-white d-flex justify-content-between align-items-center gap-2">
+    <div>
+      <select class="form-select d-inline-block w-auto" (change)="changeRowsPerPage($event)">
+        <option [value]="5">5 filas</option>
+        <option [value]="10">10 filas</option>
+        <option [value]="25">25 filas</option>
+      </select>
+    </div>
+
+    <span>
+      <small class="mt-1 text-muted" style="font-size: 0.8rem;">
+        Mostrando {{ (currentPage - 1) * rowsPerPage + 1 }} a
+        {{ rowsPerPage }} de {{ total }} registros
+      </small>
+    </span>
+
+    <nav class="pagination custom-pagination-mat" aria-label="Pagination">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" href="#" (click)="changePage(currentPage - 1)" aria-label="Previous">
+          <i class="fa fa-chevron-left"></i>
+        </a>
+      </li>
+
+      <li *ngFor="let page of [].constructor(totalPages()); let i = index" class="page-item"
+        [class.active]="i + 1 === currentPage">
+        <a class="page-link" href="#" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+      </li>
+
+      <li class="page-item" [class.disabled]="currentPage === totalPages()">
+        <a class="page-link" href="#" (click)="changePage(currentPage + 1)" aria-label="Next">
+          <i class="fa fa-chevron-right"></i>
+        </a>
+      </li>
+    </nav>
+
+  </div>
+
+</article>

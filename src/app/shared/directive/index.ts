@@ -1,0 +1,1 @@
+export { StatusChipDirective } from "./status-chip.directive"

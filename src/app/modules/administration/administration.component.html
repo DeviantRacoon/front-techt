@@ -1,0 +1,15 @@
+<app-filter></app-filter>
+
+<app-table 
+  [columns]="columns"
+  [actions]="actions"
+  [selectedActions]="selectedActions"
+  [headerActions]="headerActions"
+  [row]="data"
+  [currentPage]="currentPage"
+  [rowsPerPage]="rowsPerPage"
+  [total]="total"
+  [loading]="loading"
+  (pageChange)="onPageChange($event)"
+  (rowsPerPageChange)="onRowsPerPageChange($event)">
+</app-table>
