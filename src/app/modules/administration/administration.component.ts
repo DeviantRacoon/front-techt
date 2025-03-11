@@ -2,13 +2,33 @@
 import { Component, OnInit } from '@angular/core';
 
 // Shared
-import { TColumn, TActionTable, TActionTableHeaders, TRow } from 'src/app/shared/models';
+import { TColumn, TActionTable, TFilter, TRow } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-administration',
   templateUrl: './administration.component.html',
 })
 export class AdministrationComponent implements OnInit {
+  filters: TFilter[] = [
+    {
+      label: 'Estado',
+      options: [
+        { label: 'Activo', value: 'Activo' },
+        { label: 'Inactivo', value: 'Inactivo' },
+      ]
+    },
+    {
+      label: 'Tipo',
+      options: [
+        { label: 'A', value: 'A' },
+        { label: 'B', value: 'B' },
+        { label: 'C', value: 'C' },
+      ]
+    }
+  ];
+
+  order: 'asc' | 'desc' = 'desc';
+
   loading: boolean = false;
   columns: TColumn[] = [
     { textAlign: 'left', type: 'text', key: 'nombre', name: 'Nombre' },
