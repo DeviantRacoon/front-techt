@@ -1,18 +1,21 @@
-<app-filter
-  [filters]="filters"
-  [order]="order">
-</app-filter>
+<section class="container-fluid p-1 mx-auto">
+  <app-head
+    [title]="'Administración'"
+    [headerActions]="headerActions">
+  </app-head>
 
-<app-table 
-  [columns]="columns"
-  [actions]="actions"
-  [selectedActions]="selectedActions"
-  [headerActions]="headerActions"
-  [row]="data"
-  [currentPage]="currentPage"
-  [rowsPerPage]="rowsPerPage"
-  [total]="total"
-  [loading]="loading"
-  (pageChange)="onPageChange($event)"
-  (rowsPerPageChange)="onRowsPerPageChange($event)">
-</app-table>
+  <app-table 
+    [filters]="filters"
+    [order]="order"
+    [searchQuery]="{ placeholder: 'Buscar...', value: '' }"
+    [columns]="columns"
+    [actions]="actions"
+    [selectedActions]="selectedActions"
+    [row]="data"
+    [total]="total"
+    [loading]="loading"
+    (pageChange)="onPageChange($event)"
+    (rowsPerPageChange)="onRowsPerPageChange($event)">
+  </app-table>
+  
+</section>

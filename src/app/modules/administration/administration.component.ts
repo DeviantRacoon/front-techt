@@ -11,7 +11,7 @@ import { TColumn, TActionTable, TFilter, TRow } from 'src/app/shared/models';
 export class AdministrationComponent implements OnInit {
   filters: TFilter[] = [
     {
-      label: 'Estado',
+      label: 'Estatus',
       options: [
         { label: 'Activo', value: 'Activo' },
         { label: 'Inactivo', value: 'Inactivo' },
@@ -30,12 +30,13 @@ export class AdministrationComponent implements OnInit {
   order: 'asc' | 'desc' = 'desc';
 
   loading: boolean = false;
+  
   columns: TColumn[] = [
     { textAlign: 'left', type: 'text', key: 'nombre', name: 'Nombre' },
     { textAlign: 'left', type: 'text', key: 'email', name: 'Email' },
     { textAlign: 'center', type: 'money', key: 'money', name: 'Dinero' },
     { textAlign: 'center', type: 'status', key: 'status', name: 'Estado' },
-    { textAlign: 'center', type: 'date', key: 'date', name: 'Fecha Creación' }
+    { textAlign: 'center', type: 'datetime', key: 'date', name: 'Fecha Creación' }
   ];
 
   data: TRow[] = [];

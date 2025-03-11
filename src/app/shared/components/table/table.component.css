@@ -34,20 +34,15 @@ input[type="checkbox"] {
 }
 
 .custom-pagination-mat .page-link {
-  border-radius: 4px;
-  padding: 6px 10px;
+  padding: 4px 8px;
   font-size: 0.875rem;
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.87);
-  background: rgba(0, 0, 0, 0.04);
-  border: none;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .custom-pagination-mat .page-item.active .page-link {
-  background-color: #1976d2;
-  color: white;
+  background-color: #e0e4e7;
+  color: rgba(0, 0, 0, 0.54);
 }
 
 .custom-pagination-mat .page-item .page-link:hover {

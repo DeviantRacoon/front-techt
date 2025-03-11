@@ -1,21 +1,20 @@
-<article class="card shadow-none border-0">
+<article class="card shadow-sm border-0 px-3">
 
   <!-- Header Actions -->
-  <div class="d-flex card-header bg-transparent justify-content-end pb-3 px-0 gap-2">
-    <span *ngIf="selectedItems.size" class="d-flex gap-2">
-      <button [class]="'btn btn-' + action.color" *ngFor="let action of selectedActions" class="shadow-md"
-        (click)="action.cta(selectedItems)">
-        <i [class]="action.icon"></i> {{ action.label }}
-      </button>
+  <div class="d-flex card-header bg-transparent justify-content-between pb-3 px-0 w-100">
+    <span class="d-flex align-items-center justify-content-start gap-2 w-50">
+      <span *ngIf="selectedItems.size">
+        <button [class]="'btn shadow-none text-' + action.color" *ngFor="let action of selectedActions"
+          class="shadow-md" (click)="action.cta(selectedItems)">
+          <i [class]="action.icon"></i> {{ action.label }}
+        </button>
+      </span>
     </span>
-    <button [class]="'btn btn-' + action.variant" *ngFor="let action of headerActions" (click)="action.cta()"
-      class="shadow-md">
-      <i [class]="action.icon"></i> {{ action.label }}
-    </button>
+    <app-filter [filters]="filters" [order]="order" [searchQuery]="searchQuery"></app-filter>
   </div>
 
   <!-- Tabla -->
-  <div class="card-bod p-0" style="width: 100%;">
+  <div class="card-body p-0" style="width: 100%;">
     <div class="table-responsive table-container">
       <table class="table shadow-none rounded" [ngClass]="loading ? 'cursor-wait' : 'table-hover'">
 
@@ -48,7 +47,7 @@
                 <span *ngSwitchCase="'money'">{{ item[column.key] === null ? column.defaultValue : (item[column.key] |
                   currency) }}</span>
                 <span *ngSwitchCase="'date'">{{ item[column.key] === null ? column.defaultValue : (item[column.key] |
-                  date) }}</span>
+                  date: 'dd/MM/yyyy') }}</span>
                 <span *ngSwitchCase="'datetime'">{{ item[column.key] === null ? column.defaultValue : (item[column.key]
                   | date: 'short') }}</span>
                 <span *ngSwitchCase="'status'">
@@ -100,9 +99,9 @@
   <div class="card-footer bg-white d-flex justify-content-between align-items-center gap-2">
     <div>
       <select class="form-select d-inline-block w-auto" (change)="changeRowsPerPage($event)">
-        <option [value]="5">5 filas</option>
-        <option [value]="10">10 filas</option>
-        <option [value]="25">25 filas</option>
+        <option [value]="5" [selected]="rowsPerPage === 5">5 filas</option>
+        <option [value]="10" [selected]="rowsPerPage === 10">10 filas</option>
+        <option [value]="25" [selected]="rowsPerPage === 25">25 filas</option>
       </select>
     </div>
 
@@ -115,23 +114,23 @@
 
     <nav class="pagination custom-pagination-mat" aria-label="Pagination">
       <li class="page-item" [class.disabled]="currentPage === 1">
-        <a class="page-link" href="#" (click)="changePage(currentPage - 1)" aria-label="Previous">
+        <a class="page-link shadow-none border" (click)="changePage(currentPage - 1)" aria-label="Previous">
           <i class="fa fa-chevron-left"></i>
         </a>
       </li>
 
       <li *ngFor="let page of [].constructor(totalPages()); let i = index" class="page-item"
         [class.active]="i + 1 === currentPage">
-        <a class="page-link" href="#" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+        <a class="page-link shadow-none border" (click)="changePage(i + 1)">{{ i + 1 }}</a>
       </li>
 
       <li class="page-item" [class.disabled]="currentPage === totalPages()">
-        <a class="page-link" href="#" (click)="changePage(currentPage + 1)" aria-label="Next">
+        <a class="page-link shadow-none border" (click)="changePage(currentPage + 1)" aria-label="Next">
           <i class="fa fa-chevron-right"></i>
         </a>
       </li>
     </nav>
-
   </div>
+
 
 </article>

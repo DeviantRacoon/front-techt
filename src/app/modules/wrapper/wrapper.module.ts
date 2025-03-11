@@ -10,7 +10,7 @@ import { AdministrationComponent } from '../administration/administration.compon
 // Standalone
 import { SidebarComponent } from 'src/app/shared/module/sidebar/sidebar.component';
 import { NavbarComponent } from 'src/app/shared/module/navbar/navbar.component';
-import { TableComponent, FilterComponent } from 'src/app/shared/components';
+import { TableComponent, FilterComponent, HeadComponent } from 'src/app/shared/components';
 
 
 // Routing
@@ -23,6 +23,7 @@ import { WrapperRoutes } from './wrapper.routing';
     NavbarComponent,
     TableComponent,
     FilterComponent,
+    HeadComponent,
     WrapperRoutes
   ],
   declarations: [

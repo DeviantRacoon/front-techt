@@ -1,55 +1,55 @@
-<article class="card shadow border-0 rounded bg-body-tertiary my-2">
-  <div class="d-flex align-items-center justify-content-end gap-2 p-2">
+<article class="card border-0 rounded bg-transparent py-2 shadow-none w-100">
+  <div class="d-flex align-items-center justify-content-between gap-4">
 
     <!-- Barra de búsqueda -->
-    <div class="input-group w-50 rounded shadow-sm">
-      <input type="text" class="form-control shadow-none bg-white border-0"
-             [placeholder]="searchQuery.placeholder"
-             [(ngModel)]="searchQuery.value"
-             (keydown.enter)="updateSearch(searchQuery.value)">
-      <span class="input-group-text border-0 shadow-none bg-white" id="search-icon-button">
-        <i class="fa fa-search" style="cursor: pointer;"></i>
-      </span>
+    <div class="input-group rounded border">
+      <input type="text" class="form-control border-0 shadow-none bg-white" 
+        [placeholder]="searchQuery.placeholder" 
+        [(ngModel)]="searchQuery.value" 
+        (keydown.enter)="updateSearch(searchQuery.value)">
+      <button class="btn bg-white border-0" id="search-icon-button">
+        <i class="fa fa-search text-primary"></i>
+      </button>
     </div>
 
-    <!-- Dropdown de Filtros -->
-    <div class="dropdown">
-      <button class="btn btn-secondary border-0 shadow-sm" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="assets/svg/filter-outline.svg" alt="filter" loading="lazy" width="20">
+    <div class="d-flex gap-2">
+
+      <!-- Dropdown de Filtros -->
+      <div class="dropdown">
+        <button class="btn btn-outline-light border d-flex align-items-center gap-2 shadow-none" 
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="assets/svg/filter-outline.svg" alt="filter" width="18">
+          <span class="d-none d-md-inline">Filtros</span>
+        </button>
+
+        <ul class="dropdown-menu p-3 bg-light border-0 rounded shadow mt-1" style="width: 400px;">
+          <li><strong class="d-block mb-3">Filtros</strong></li>
+          <li *ngFor="let filter of filters" class="d-flex gap-3 align-items-center mb-2">
+            <label class="form-label text-start w-25 m-0">{{ filter.label }}</label>
+            <select class="form-select" (change)="updateFilter(filter.label, $event)">
+              <option selected disabled>Selecciona una opción</option>
+              <option *ngFor="let option of filter.options" 
+                [value]="option.value" 
+                [selected]="option.selected">
+                {{ option.label }}
+              </option>
+            </select>
+          </li>
+          <li class="d-flex justify-content-end mt-3">
+            <button class="btn btn-outline-secondary w-100 shadow-none border" (click)="clearFilters()">
+              <i class="fa fa-times me-2"></i> Limpiar filtros
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Ordenamiento -->
+      <button class="btn btn-outline-light border d-flex align-items-center gap-2 shadow-none" 
+        (click)="toggleOrder()">
+        <i [ngClass]="order === 'none' ? 'fa fa-sort' : (order === 'asc' ? 'fa fa-sort-up' : 'fa fa-sort-down')"></i>
       </button>
 
-      <ul class="dropdown-menu p-3 bg-body border-0 rounded shadow-sm mt-1" style="width: 400px;"
-        (click)="$event.stopPropagation()">
-        <li><strong class="d-block mb-4">Filtros</strong></li>
-        <li *ngFor="let filter of filters" class="d-flex gap-4 justify-content-center align-items-center mb-2">
-          <label class="form-label text-start w-25 my-auto">{{ filter.label }}</label>
-          <select class="form-select" aria-label="Default select example"
-                  (change)="updateFilter(filter.label, $event)">
-            <option selected disabled>Selecciona una opción</option>
-            <option *ngFor="let option of filter.options" 
-                    [value]="option.value" [selected]="option.selected">
-              {{ option.label }}
-            </option>
-          </select>
-        </li>
-
-        <li class="d-flex justify-content-end gap-2 mt-3">
-          <button class="btn btn-primary" (click)="emitFilterChange()">
-            <i class="fa fa-filter me-2"></i>
-            Aplicar
-          </button>
-          <button class="btn btn-outline-secondary" (click)="clearFilters()">
-            <i class="fa fa-times me-2"></i>
-            Limpiar
-          </button>
-        </li>
-      </ul>
     </div>
-
-    <!-- Ordenamiento -->
-    <button class="btn btn-secondary border-0 shadow-sm" (click)="toggleOrder()">
-      <i class="fa fa-sort"></i>
-    </button>
 
   </div>
 </article>

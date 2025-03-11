@@ -15,7 +15,7 @@ import { TFilter } from '../../models';
 })
 export class FilterComponent implements OnInit {
   @Input() filters: TFilter[] = [];
-  @Input() order: 'asc' | 'desc' = 'desc';
+  @Input() order: 'asc' | 'desc' | 'none' = 'none';
   @Input() searchQuery: { placeholder: string; value: string } = { placeholder: 'Buscar...', value: '' };
 
   @Output() filtersChanged = new EventEmitter<any>();
@@ -24,7 +24,7 @@ export class FilterComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.order = params['order'] || 'desc';
+      this.order = params['order'] || 'none';
       this.searchQuery.value = params['search'] || '';
       
       this.filters.forEach(filter => {
@@ -38,7 +38,7 @@ export class FilterComponent implements OnInit {
 
       this.emitFilterChange();
     });
-  }
+  };
 
   updateFilter(label: string, event: any) {
     const value = event.target.value;
@@ -48,22 +48,20 @@ export class FilterComponent implements OnInit {
   };
 
   updateSearch(value: string) {
-    console.log(value);
-    
     this.router.navigate([], {
       queryParams: { search: value },
       queryParamsHandling: 'merge',
     });
-  }
+  };
 
   toggleOrder() {
     this.order = this.order === 'asc' ? 'desc' : 'asc';
     this.router.navigate([], { queryParams: { order: this.order }, queryParamsHandling: 'merge' });
-  }
+  };
 
   clearFilters() {
     this.router.navigate([], { queryParams: {} });
-  }
+  };
 
   emitFilterChange() {
     const activeFilters = this.filters.reduce((acc, filter) => {
@@ -79,5 +77,6 @@ export class FilterComponent implements OnInit {
       order: this.order,
       ...activeFilters,
     });
-  }
+  };
 }
+
