@@ -27,6 +27,7 @@
             "styles": [
               "src/styles.css",
               "src/assets/bootstrap/bootstrap.css",
+              "node_modules/animate.css/animate.min.css",
               "node_modules/font-awesome/css/font-awesome.min.css"
             ],
             "scripts": [

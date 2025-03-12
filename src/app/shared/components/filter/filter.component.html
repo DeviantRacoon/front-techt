@@ -3,10 +3,8 @@
 
     <!-- Barra de búsqueda -->
     <div class="input-group rounded border">
-      <input type="text" class="form-control border-0 shadow-none bg-white" 
-        [placeholder]="searchQuery.placeholder" 
-        [(ngModel)]="searchQuery.value" 
-        (keydown.enter)="updateSearch(searchQuery.value)">
+      <input type="text" class="form-control border-0 shadow-none bg-white" [placeholder]="searchQuery.placeholder"
+        [(ngModel)]="searchQuery.value" (keydown.enter)="updateSearch(searchQuery.value)">
       <button class="btn bg-white border-0" id="search-icon-button">
         <i class="fa fa-search text-primary"></i>
       </button>
@@ -16,7 +14,7 @@
 
       <!-- Dropdown de Filtros -->
       <div class="dropdown">
-        <button class="btn btn-outline-light border d-flex align-items-center gap-2 shadow-none" 
+        <button class="btn btn-outline-light border d-flex align-items-center gap-2 shadow-none"
           data-bs-toggle="dropdown" aria-expanded="false">
           <img src="assets/svg/filter-outline.svg" alt="filter" width="18">
           <span class="d-none d-md-inline">Filtros</span>
@@ -28,9 +26,7 @@
             <label class="form-label text-start w-25 m-0">{{ filter.label }}</label>
             <select class="form-select" (change)="updateFilter(filter.label, $event)">
               <option selected disabled>Selecciona una opción</option>
-              <option *ngFor="let option of filter.options" 
-                [value]="option.value" 
-                [selected]="option.selected">
+              <option *ngFor="let option of filter.options" [value]="option.value" [selected]="option.selected">
                 {{ option.label }}
               </option>
             </select>
@@ -44,8 +40,7 @@
       </div>
 
       <!-- Ordenamiento -->
-      <button class="btn btn-outline-light border d-flex align-items-center gap-2 shadow-none" 
-        (click)="toggleOrder()">
+      <button class="btn btn-outline-light border d-flex align-items-center gap-2 shadow-none" (click)="toggleOrder()">
         <i [ngClass]="order === 'none' ? 'fa fa-sort' : (order === 'asc' ? 'fa fa-sort-up' : 'fa fa-sort-down')"></i>
       </button>
 

@@ -17,6 +17,14 @@ export class SidebarComponent {
   menuItems = [
     { label: 'Dashboard', icon: 'home-outline', link: '/' },
     {
+      label: 'Administración',
+      icon: 'people-circle-outline',
+      submenu: [
+        { label: 'Usuarios', link: '/administration/list-users' },
+        { label: 'Finanzas', link: '/reports/finance' },
+      ],
+    },
+    {
       label: 'Reportes',
       icon: 'file-tray-full-outline',
       submenu: [

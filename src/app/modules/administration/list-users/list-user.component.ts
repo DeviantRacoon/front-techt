@@ -6,43 +6,17 @@ import { TColumn, TActionTable, TFilter, TRow } from 'src/app/shared/models';
 import { ToastService } from 'src/app/shared/services/toast.service';
 
 @Component({
-  selector: 'app-administration',
-  templateUrl: './administration.component.html',
+  selector: 'app-list-user',
+  templateUrl: './list-user.component.html',
 })
-export class AdministrationComponent implements OnInit {
-  modalOpen: boolean = false;
-
-  filters: TFilter[] = [
-    {
-      label: 'Estatus',
-      options: [
-        { label: 'Activo', value: 'Activo' },
-        { label: 'Inactivo', value: 'Inactivo' },
-      ]
-    },
-    {
-      label: 'Tipo',
-      options: [
-        { label: 'A', value: 'A' },
-        { label: 'B', value: 'B' },
-        { label: 'C', value: 'C' },
-      ]
-    }
-  ];
-
+export class ListUserComponent implements OnInit {
   order: 'asc' | 'desc' = 'desc';
-
+  
+  modalOpen: boolean = false;
   loading: boolean = false;
   
-  columns: TColumn[] = [
-    { textAlign: 'left', type: 'text', key: 'nombre', name: 'Nombre' },
-    { textAlign: 'left', type: 'text', key: 'email', name: 'Email' },
-    { textAlign: 'center', type: 'money', key: 'money', name: 'Dinero' },
-    { textAlign: 'center', type: 'status', key: 'status', name: 'Estado' },
-    { textAlign: 'center', type: 'datetime', key: 'date', name: 'Fecha Creación' }
-  ];
-
   data: TRow[] = [];
+
 
   actions = [
     { icon: 'fa fa-eye', label: 'Ver', cta: (item: any) => console.log('Ver', item), color: 'primary' }
@@ -65,7 +39,7 @@ export class AdministrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.toastService.showToast('Éxito', 'Operación realizada correctamente', 'success', 3000);
+    this.toastService.showToast('Éxito', 'Operación realizada correctamente', 'success');
 
     setTimeout(() => {
       this.data = [

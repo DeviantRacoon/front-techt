@@ -4,14 +4,12 @@ import { CommonModule } from '@angular/common';
 
 // Component
 import { WrapperComponent } from './wrapper.component';
-import { DashboardComponent } from '../dashboard/dashboard.component';
-import { AdministrationComponent } from '../administration/administration.component';
+import { DashboardComponent } from '../modules/dashboard/dashboard.component';
 
 // Standalone
-import { SidebarComponent } from 'src/app/shared/module/sidebar/sidebar.component';
-import { NavbarComponent } from 'src/app/shared/module/navbar/navbar.component';
+import { SidebarComponent } from 'src/app/shared/modules/sidebar/sidebar.component';
+import { NavbarComponent } from 'src/app/shared/modules/navbar/navbar.component';
 import { TableComponent, FilterComponent, HeadComponent, ModalComponent, ToastComponent } from 'src/app/shared/components';
-
 
 // Routing
 import { WrapperRoutes } from './wrapper.routing';
@@ -31,7 +29,6 @@ import { WrapperRoutes } from './wrapper.routing';
   declarations: [
     WrapperComponent,
     DashboardComponent,
-    AdministrationComponent
   ]
 })
 export class WrapperModule { }

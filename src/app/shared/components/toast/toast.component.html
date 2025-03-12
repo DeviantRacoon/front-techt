@@ -1,12 +1,20 @@
-<div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3 toast-container">
-  <div *ngFor="let toast of toastService.toasts" class="toast show bg-{{toast.variant}}" role="alert">
-    <div class="toast-header">
-      <strong class="me-auto">{{ toast.title }}</strong>
-      <small class="text-body-secondary">{{ toast.timestamp }}</small>
-      <button type="button" class="btn-close"></button>
+<div class="alert-container">
+  <div *ngFor="let toast of toastService.toasts"
+       class="alert animate__animated"
+       [ngClass]="[
+         'alert-' + toast.variant,
+         toast.isFadingOut ? 'animate__fadeOutRight' : 'animate__fadeInRight'
+       ]">
+    <span class="icon">
+      <i *ngIf="toast.variant === 'success'" class="fa fa-check-circle text-success"></i>
+      <i *ngIf="toast.variant === 'danger'" class="fa fa-times-circle text-danger"></i>
+      <i *ngIf="toast.variant === 'warning'" class="fa fa-exclamation-triangle text-warning"></i>
+      <i *ngIf="toast.variant === 'info'" class="fa fa-info-circle text-info"></i>
+    </span>
+    <div>
+      <strong>{{ toast.title }}</strong>
+      <p class="m-0">{{ toast.message }}</p>
     </div>
-    <div class="toast-body">
-      {{ toast.message }}
-    </div>
+    <button type="button" class="btn-close" (click)="toastService.fadeOutToast(toast.id)"></button>
   </div>
 </div>

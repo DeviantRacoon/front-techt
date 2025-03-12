@@ -1,40 +1,49 @@
 import { Injectable } from '@angular/core';
-import { TToast } from '../models';
+
+interface Toast {
+  id: number;
+  title: string;
+  message: string;
+  variant: 'success' | 'danger' | 'warning' | 'info' | 'primary' | 'secondary';
+  timestamp: string;
+  duration: number;
+  isFadingOut?: boolean; // Nueva propiedad para manejar la animación de salida
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToastService {
-  toasts: TToast[] = [];
+  toasts: Toast[] = [];
   private idCounter = 0;
 
   constructor() {}
 
-  showToast(title: string, message: string, variant: TToast['variant'], duration: number = 5000) {
-    const toast: TToast = {
+  showToast(title: string, message: string, variant: Toast['variant'], duration: number = 5000) {
+    const toast: Toast = {
       id: ++this.idCounter,
       title,
       message,
       variant,
-      timestamp: this.formatTimeAgo(new Date()),
+      timestamp: 'Just now',
       duration
     };
 
     this.toasts.push(toast);
 
-    setTimeout(() => this.removeToast(toast.id), duration);
+    setTimeout(() => this.fadeOutToast(toast.id), duration - 400); 
   }
 
-  private removeToast(id: number) {
+  fadeOutToast(id: number) {
+    const toast = this.toasts.find(t => t.id === id);
+    if (toast) {
+      toast.isFadingOut = true; 
+
+      setTimeout(() => this.removeToast(id), 400);
+    }
+  }
+
+  removeToast(id: number) {
     this.toasts = this.toasts.filter(toast => toast.id !== id);
-  }
-
-  private formatTimeAgo(date: Date): string {
-    const diff = Math.floor((new Date().getTime() - date.getTime()) / 1000);
-    if (diff < 5) return 'Just now';
-    if (diff < 60) return `${diff} seconds ago`;
-    if (diff < 3600) return `${Math.floor(diff / 60)} minutes ago`;
-    if (diff < 86400) return `${Math.floor(diff / 3600)} hours ago`;
-    return `${Math.floor(diff / 86400)} days ago`;
   }
 }

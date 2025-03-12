@@ -7,7 +7,7 @@
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(1px);
   opacity: 0;
-  animation: fadeIn 0.2s forwards;
+  animation: fadeIn 0.1s forwards;
   z-index: 1040;
 }
 
@@ -20,7 +20,7 @@
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   opacity: 0;
-  animation: slideIn 0.2s forwards;
+  animation: slideIn 0.1s forwards;
   z-index: 1050;
   max-height: 90vh;
   overflow-y: auto;
@@ -37,7 +37,7 @@
   animation: slideIn 0.2s forwards;
 }
 .hide {
-  animation: slideOut 0.2s forwards;
+  animation: slideOut 0.1s forwards;
 }
 
 @keyframes fadeIn {

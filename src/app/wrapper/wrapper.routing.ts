@@ -2,8 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 // Component
 import { WrapperComponent } from './wrapper.component';
-import { DashboardComponent } from '../dashboard/dashboard.component';
-import { AdministrationComponent } from '../administration/administration.component';
+import { DashboardComponent } from '../modules/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -11,9 +10,13 @@ const routes: Routes = [
     component: WrapperComponent,
     children: [
       { path: '', component: DashboardComponent },
-      { path: 'administration/users', component: AdministrationComponent },
+      {
+        path: 'administration',
+        loadChildren: () => import('../modules/administration/administration.module').then(m => m.AdministrationModule)
+      },
     ],
   },
 ];
 
 export const WrapperRoutes = RouterModule.forChild(routes);
+

@@ -10,6 +10,7 @@ import { TFilter } from '../../models';
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
+  styleUrls: ['./filter.component.css'],
   standalone: true,
   imports: [CommonModule, FormsModule],
 })
