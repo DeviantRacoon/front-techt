@@ -1,6 +1,7 @@
 // Angular
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 // Shared
 import { TActionTableHeaders } from 'src/app/shared/models';
@@ -11,14 +12,12 @@ import { TActionTableHeaders } from 'src/app/shared/models';
   standalone: true,
   imports: [CommonModule]
 })
-export class HeadComponent implements OnInit {
+export class HeadComponent {
   @Input() title: string = '';
-  @Input() subtitle: string = '';
+  @Input() icon: string = '';
   @Input() headerActions: TActionTableHeaders[] = [];
+ @Input() segments: { primary: string; secondary?: string } = { primary: '' };
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  constructor(private route: ActivatedRoute) { }
 }
+

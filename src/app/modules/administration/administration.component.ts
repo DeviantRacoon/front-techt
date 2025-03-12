@@ -3,12 +3,15 @@ import { Component, OnInit } from '@angular/core';
 
 // Shared
 import { TColumn, TActionTable, TFilter, TRow } from 'src/app/shared/models';
+import { ToastService } from 'src/app/shared/services/toast.service';
 
 @Component({
   selector: 'app-administration',
   templateUrl: './administration.component.html',
 })
 export class AdministrationComponent implements OnInit {
+  modalOpen: boolean = false;
+
   filters: TFilter[] = [
     {
       label: 'Estatus',
@@ -46,7 +49,7 @@ export class AdministrationComponent implements OnInit {
   ];
 
   headerActions = [
-    { icon: 'fa fa-plus', label: 'Agregar', cta: () => console.log('Agregar nuevo'), variant: 'primary' }
+    { icon: 'fa fa-plus', label: 'Agregar', cta: () => this.modalOpen = true , variant: 'primary' }
   ];
 
   selectedActions: TActionTable[] = [
@@ -58,8 +61,12 @@ export class AdministrationComponent implements OnInit {
   currentPage = 1;
   rowsPerPage = 10;
 
+  constructor(private toastService: ToastService) { }
+
   ngOnInit(): void {
     this.loading = true;
+    this.toastService.showToast('Éxito', 'Operación realizada correctamente', 'success', 3000);
+
     setTimeout(() => {
       this.data = [
         { id: 1, nombre: 'John Doe', email: 'o7yOg@example.com', money: 100000 , status: 'Activo', date: new Date() },

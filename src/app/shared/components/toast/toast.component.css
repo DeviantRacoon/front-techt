@@ -1,0 +1,21 @@
+.toast-container {
+    z-index: 1050;
+    max-width: 350px;
+  }
+  
+  .toast {
+    opacity: 0.95;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+  
+  .toast.show {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  .toast.hide {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  

@@ -24,7 +24,7 @@ export class SidebarComponent {
         { label: 'Finanzas', link: '/reports/finance' },
       ],
     },
-    { label: 'Cuentas', icon: 'wallet-outline', link: '/admin' },
+    { label: 'Cuentas', icon: 'wallet-outline', link: '/administration/users' },
     { label: 'Clientes', icon: 'people-outline', link: '/customers' },
     {
       label: 'Configuración',

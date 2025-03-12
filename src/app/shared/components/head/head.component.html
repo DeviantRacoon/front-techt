@@ -4,21 +4,24 @@
   <!-- Título e icono -->
   <div class="d-flex justify-content-between align-items-center">
     <div class="d-flex align-items-center gap-3">
-      <div class="bg-secondary p-3 rounded-3">
-        <img src="assets/svg/file-tray-full-outline.svg" alt="file-tray-full-outline" width="60">
+      <div class="p-3 rounded-3">
+        <img [src]="'assets/svg/' +  icon + '.svg'" [alt]="icon" width="60">
       </div>
 
       <div>
         <ol class="breadcrumb text-muted m-0 p-0 shadow-none border-0 bg-transparent">
-          <li class="breadcrumb-item py-0 px-1"><a href="#" class="text-decoration-none">Customers</a></li>
-          <li class="breadcrumb-item active fw-bold py-0 px-1" aria-current="page">Customers</li>
+          <li [ngClass]="{'breadcrumb-item': true, 'active': !segments.secondary}" class="py-0 px-1">
+            <a *ngIf="segments.secondary" class="text-decoration-none">{{ segments.primary | titlecase }}</a>
+            <span *ngIf="!segments.secondary" class="fw-bold">{{ segments.primary | titlecase }}</span>
+          </li>
+          <li *ngIf="segments?.secondary" class="breadcrumb-item active fw-bold py-0 px-1" aria-current="page">{{ segments.secondary }}</li>
         </ol>
-        <h3 class="h3 fw-bold mb-0">Customers</h3>
+        <h3 class="h3 fw-bold mb-0">{{ title }}</h3>
       </div>
     </div>
 
     <!-- Botón de acción -->
-    <button *ngFor="let action of headerActions" type="button" [class]="'shadow-none btn btn-' + action.variant">
+    <button *ngFor="let action of headerActions" type="button" [class]="'shadow-none btn btn-' + action.variant" (click)="action.cta()">
       <i [class]="action.icon + ' me-2'"></i> {{ action.label }}
     </button>
   </div>

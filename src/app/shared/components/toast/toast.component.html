@@ -1,0 +1,12 @@
+<div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3 toast-container">
+  <div *ngFor="let toast of toastService.toasts" class="toast show bg-{{toast.variant}}" role="alert">
+    <div class="toast-header">
+      <strong class="me-auto">{{ toast.title }}</strong>
+      <small class="text-body-secondary">{{ toast.timestamp }}</small>
+      <button type="button" class="btn-close"></button>
+    </div>
+    <div class="toast-body">
+      {{ toast.message }}
+    </div>
+  </div>
+</div>

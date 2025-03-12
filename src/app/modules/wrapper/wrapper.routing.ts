@@ -11,7 +11,7 @@ const routes: Routes = [
     component: WrapperComponent,
     children: [
       { path: '', component: DashboardComponent },
-      { path: 'admin', component: AdministrationComponent },
+      { path: 'administration/users', component: AdministrationComponent },
     ],
   },
 ];
