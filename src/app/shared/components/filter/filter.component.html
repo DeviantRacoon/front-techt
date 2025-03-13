@@ -25,7 +25,7 @@
           <li *ngFor="let filter of filters" class="d-flex gap-3 align-items-center mb-2">
             <label class="form-label text-start w-25 m-0">{{ filter.label }}</label>
             <select class="form-select" (change)="updateFilter(filter.label, $event)">
-              <option selected disabled>Selecciona una opción</option>
+              <option selected disable value="">Selecciona una opción</option>
               <option *ngFor="let option of filter.options" [value]="option.value" [selected]="option.selected">
                 {{ option.label }}
               </option>

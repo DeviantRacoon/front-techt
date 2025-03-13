@@ -27,6 +27,7 @@
       { textAlign: 'center', type: 'status', key: 'status', name: 'Estado' },
       { textAlign: 'center', type: 'datetime', key: 'date', name: 'Fecha Creación'}
     ]" [actions]="actions"
+    [selectRow]="printRow"
     [selectedActions]="selectedActions" [row]="data" [total]="total" [loading]="loading"
     (pageChange)="onPageChange($event)" (rowsPerPageChange)="onRowsPerPageChange($event)">
   </app-table>

@@ -17,6 +17,9 @@ export class ListUserComponent implements OnInit {
   
   data: TRow[] = [];
 
+  printRow(item: any) {
+    console.log(item);  
+  };
 
   actions = [
     { icon: 'fa fa-eye', label: 'Ver', cta: (item: any) => console.log('Ver', item), color: 'primary' }

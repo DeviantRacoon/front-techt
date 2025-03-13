@@ -61,6 +61,13 @@ export class FilterComponent implements OnInit {
   };
 
   clearFilters() {
+    this.filters.forEach(filter => 
+      filter.options.forEach((option: any) => option.selected = false)
+    );
+
+    console.log(this.filters);
+    
+
     this.router.navigate([], { queryParams: {} });
   };
 

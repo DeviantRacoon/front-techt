@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 // Shared
 import { StatusChipDirective } from '../../directive';
-import { TColumn, TActionTable, TActionTableHeaders, TRow, TFilter } from '../../models';
+import { TColumn, TActionTable, TRow, TFilter } from '../../models';
 import { FilterComponent } from '../filter/filter.component';
 
 @Component({
@@ -21,6 +21,7 @@ export class TableComponent implements OnInit {
   @Input() row: TRow[] = [];
   @Input() total = 0;
   @Input() selectedActions: TActionTable[] = [];
+  @Input() selectRow?: (item: any) => void;
   @Input() filters: TFilter[] = [];
   @Input() order: 'asc' | 'desc' | 'none' = 'none';
   @Input() searchQuery: { placeholder: string; value: string } = { placeholder: 'Buscar...', value: '' };

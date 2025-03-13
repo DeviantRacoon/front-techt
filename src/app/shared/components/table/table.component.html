@@ -41,6 +41,8 @@
             </td>
 
             <td *ngFor="let column of columns" [ngClass]="'text-' + column.textAlign + ' text-' + column.textVariant"
+              (click)="selectRow ? selectRow(item) : null"
+              [style.cursor]="selectRow ? 'pointer' : 'default'"
               [class]="selectedItems.has(item.id) ? 'bg-body-secondary' : ''"
               [ngStyle]="{ width: getColumnSize(column.size) }">
               <ng-container [ngSwitch]="column.type">
