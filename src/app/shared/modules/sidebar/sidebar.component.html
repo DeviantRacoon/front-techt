@@ -38,7 +38,7 @@
             class="img-fluid me-2"
             width="20"
           />
-          <span>{{ item.label }}</span>
+          <span class="small">{{ item.label }}</span>
           <i class="fa fa-chevron-down ms-auto menu-arrow"></i>
         </a>
         
@@ -47,8 +47,8 @@
           [id]="'collapse' + item.label.replace(' ', '')">
           <li *ngFor="let subItem of item.submenu">
             <a [routerLink]="subItem.link"
-              class="nav-link d-flex align-items-center py-1 ps-2 text-muted">
-              <span class="ms-2">{{ subItem.label }}</span>
+              class="nav-link d-flex align-items-center pt-1 ps-2 text-muted">
+              <span class="ms-1 small">{{ subItem.label }}</span>
             </a>
           </li>
         </ul>

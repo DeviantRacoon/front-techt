@@ -1,6 +1,8 @@
-<div class="custom-backdrop" *ngIf="isOpen"></div>
+<!-- Fondo Oscuro (Backdrop) -->
+<div class="custom-backdrop" *ngIf="isOpen" @backdropAnimation></div>
 
-<div class="custom-modal" *ngIf="isOpen" [class.show]="isOpen && !isClosing" [class.hide]="isClosing" [ngClass]="size">
+<!-- Modal -->
+<div class="custom-modal" *ngIf="isOpen" [ngClass]="size" @modalAnimation>
   <div class="modal-content p-3">
     <div class="modal-header d-block">
       <h4 class="modal-title h4 fw-bold">{{ title }}</h4>
@@ -11,18 +13,17 @@
       <ng-content></ng-content>
     </div>
     <div class="modal-footer bg-transparent d-flex align-items-center w-100 gap-2">
-      <button  type="button" class="btn btn-outline-secondary border" [disabled]="loading || isClosing" (click)="closeModal()">
+      <button type="button" class="btn btn-outline-secondary border" [disabled]="loading" (click)="closeModal()">
         Cerrar
       </button>
     
       <button type="button" 
-        [disabled]="loading || isClosing"
+        [disabled]="loading"
         (click)="action.cta()"
         class="btn btn-primary flex-grow-1 d-flex justify-content-center align-items-center">
         <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         {{ loading ? '' : action.label }}
       </button>
     </div>
-    
   </div>
 </div>

@@ -2,7 +2,7 @@
   <div class="d-flex align-items-center justify-content-between gap-4">
 
     <!-- Barra de búsqueda -->
-    <div class="input-group rounded border">
+    <div class="input-group rounded border z-1">
       <input type="text" class="form-control border-0 shadow-none bg-white" [placeholder]="searchQuery.placeholder"
         [(ngModel)]="searchQuery.value" (keydown.enter)="updateSearch(searchQuery.value)">
       <button class="btn bg-white border-0" id="search-icon-button">

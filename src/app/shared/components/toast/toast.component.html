@@ -1,20 +1,23 @@
 <div class="alert-container">
-  <div *ngFor="let toast of toastService.toasts"
-       class="alert animate__animated"
-       [ngClass]="[
-         'alert-' + toast.variant,
-         toast.isFadingOut ? 'animate__fadeOutRight' : 'animate__fadeInRight'
-       ]">
+  <div *ngFor="let toast of toastService.toasts" 
+       class="alert"
+       [ngClass]="'alert-' + toast.variant"
+       @toastAnimation>
+    
     <span class="icon">
       <i *ngIf="toast.variant === 'success'" class="fa fa-check-circle text-success"></i>
       <i *ngIf="toast.variant === 'danger'" class="fa fa-times-circle text-danger"></i>
       <i *ngIf="toast.variant === 'warning'" class="fa fa-exclamation-triangle text-warning"></i>
       <i *ngIf="toast.variant === 'info'" class="fa fa-info-circle text-info"></i>
     </span>
-    <div>
+
+    <div class="content">
       <strong>{{ toast.title }}</strong>
       <p class="m-0">{{ toast.message }}</p>
     </div>
-    <button type="button" class="btn-close" (click)="toastService.fadeOutToast(toast.id)"></button>
+
+    <button type="button" class="btn-close shadow-none border-0" (click)="toastService.fadeOutToast(toast.id)">
+      <i class="fa fa-times"></i>
+    </button>
   </div>
 </div>
