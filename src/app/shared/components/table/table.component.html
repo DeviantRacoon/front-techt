@@ -79,7 +79,59 @@
         </tbody>
 
         <tbody *ngIf="loading">
-          <tr *ngFor="let _ of skeletonLoader" class="align-middle">
+          <tr class="align-middle">
+            <td class="py-3">
+              <div class="skeleton-loader skeleton-checkbox"></div>
+            </td>
+
+            <td *ngFor="let column of columns">
+              <div class="skeleton-loader skeleton-text"></div>
+            </td>
+
+            <td *ngIf="actions.length > 0" class="text-end">
+              <div class="skeleton-loader skeleton-icon"></div>
+            </td>
+          </tr>
+          <tr class="align-middle">
+            <td class="py-3">
+              <div class="skeleton-loader skeleton-checkbox"></div>
+            </td>
+
+            <td *ngFor="let column of columns">
+              <div class="skeleton-loader skeleton-text"></div>
+            </td>
+
+            <td *ngIf="actions.length > 0" class="text-end">
+              <div class="skeleton-loader skeleton-icon"></div>
+            </td>
+          </tr>
+          <tr class="align-middle">
+            <td class="py-3">
+              <div class="skeleton-loader skeleton-checkbox"></div>
+            </td>
+
+            <td *ngFor="let column of columns">
+              <div class="skeleton-loader skeleton-text"></div>
+            </td>
+
+            <td *ngIf="actions.length > 0" class="text-end">
+              <div class="skeleton-loader skeleton-icon"></div>
+            </td>
+          </tr>
+          <tr class="align-middle">
+            <td class="py-3">
+              <div class="skeleton-loader skeleton-checkbox"></div>
+            </td>
+
+            <td *ngFor="let column of columns">
+              <div class="skeleton-loader skeleton-text"></div>
+            </td>
+
+            <td *ngIf="actions.length > 0" class="text-end">
+              <div class="skeleton-loader skeleton-icon"></div>
+            </td>
+          </tr>
+          <tr class="align-middle">
             <td class="py-3">
               <div class="skeleton-loader skeleton-checkbox"></div>
             </td>

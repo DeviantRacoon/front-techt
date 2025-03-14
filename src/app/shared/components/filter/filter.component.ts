@@ -4,46 +4,48 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
+// Animation
+import { trigger, state, style, transition, animate } from '@angular/animations';
+
 // Shared
 import { TFilter } from '../../models';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.css'],
   standalone: true,
   imports: [CommonModule, FormsModule],
+  animations: [
+    trigger('dropdownAnimation', [
+      state('closed', style({ opacity: 0, transform: 'translateY(-10px)' })),
+      state('open', style({ opacity: 1, transform: 'translateY(0)' })),
+      transition('closed => open', [
+        style({ opacity: 0 }),
+        animate('200ms ease-out')
+      ]),
+      transition('open => closed', [
+        animate('150ms ease-in', style({ opacity: 0, transform: 'translateY(-10px)' }))
+      ])
+    ])
+  ]
 })
 export class FilterComponent implements OnInit {
   @Input() filters: TFilter[] = [];
   @Input() order: 'asc' | 'desc' | 'none' = 'none';
   @Input() searchQuery: { placeholder: string; value: string } = { placeholder: 'Buscar...', value: '' };
-
   @Output() filtersChanged = new EventEmitter<any>();
+  isDropdownOpen = false;
+  selectedDefault = false;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.order = params['order'] || 'none';
-      this.searchQuery.value = params['search'] || '';
-      
-      this.filters.forEach(filter => {
-        const paramValue = params[filter.label];
-        if (paramValue) {
-          filter.options.forEach((option: any) => {
-            option.selected = option.value === paramValue;
-          });
-        }
-      });
-
-      this.emitFilterChange();
-    });
+    this.stateFiltersURL();
   };
 
   updateFilter(label: string, event: any) {
     const value = event.target.value;
-    
+
     const queryParams = { ...this.route.snapshot.queryParams, [label]: value };
     this.router.navigate([], { queryParams, queryParamsHandling: 'merge' });
   };
@@ -60,15 +62,31 @@ export class FilterComponent implements OnInit {
     this.router.navigate([], { queryParams: { order: this.order }, queryParamsHandling: 'merge' });
   };
 
+  stateFiltersURL() {
+    this.route.queryParams.subscribe(params => {
+      this.order = params['order'] || 'none';
+      this.searchQuery.value = params['search'] || '';
+
+      this.filters.forEach(filter => {
+        const paramValue = params[filter.label];
+        if (paramValue) {
+          filter.options.forEach((option: any) => {
+            option.selected = option.value === paramValue;
+          });
+        }
+      });
+
+      this.emitFilterChange();
+    });
+  };
+
   clearFilters() {
     this.filters.forEach(filter => 
       filter.options.forEach((option: any) => option.selected = false)
     );
 
-    console.log(this.filters);
-    
-
     this.router.navigate([], { queryParams: {} });
+    this.emitFilterChange();
   };
 
   emitFilterChange() {
@@ -79,7 +97,7 @@ export class FilterComponent implements OnInit {
       }
       return acc;
     }, {} as any);
-    
+
     this.filtersChanged.emit({
       search: this.searchQuery.value,
       order: this.order,

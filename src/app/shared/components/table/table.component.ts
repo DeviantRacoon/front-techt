@@ -34,7 +34,6 @@ export class TableComponent implements OnInit {
   rowsPerPage = 5;
 
   selectedItems: Set<number> = new Set();
-  skeletonLoader = [1, 2, 3, 4, 5];
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
