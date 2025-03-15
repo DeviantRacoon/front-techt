@@ -1,17 +1,9 @@
-:root {
-  --sidebar-hover: #e9ecef;
-  --sidebar-active: #0d6efd;
-  --foreground: #495057;
-  --background: #ffffff;
-  --accent: #ffffff;
-}
-
 .sidebar-nav {
   width: 230px;
   height: 100vh;
   transition: transform 0.3s ease-in-out;
   transform: translateX(0);
-  background: var(--background);
+  background: var(--bs-body-bg);
 }
 
 .sidebar-nav.active {
@@ -19,7 +11,9 @@
 }
 
 .nav-link {
-  color: var(--foreground);
+  cursor: pointer;
+  user-select: none;
+  color: var(--sidebar-text);
   border-radius: 8px;
   margin: 0 15px;
   transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
@@ -30,12 +24,8 @@
 }
 
 .nav-link.active {
-  background: var(--sidebar-active);
-  color: var(--accent);
-}
-
-.submenu {
-  background: var(--background);
+  background: #dde1e6;
+  font-weight: bold;
 }
 
 .menu-arrow {
@@ -59,7 +49,7 @@
 }
 
 .toggle-btn:hover {
-  background: var(--sidebar-hover);
+  background: #e9ecef;
 }
 
 .input-menu-search {

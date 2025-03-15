@@ -1,9 +1,9 @@
 <app-navbar></app-navbar>
 <div id="content">
     <app-sidebar (toggleSidebarEvent)="toggleSidebar($event)"></app-sidebar>
-    <main id="main" class="container-fluid w-100 min-vh-100 bg-light p-1" [style]="{'margin-left': sidebarActive ? '230px' : '25px'}">
+    <main id="main" class="container-fluid w-100 bg-light" 
+        [style.marginLeft]="sidebarActive ? '230px' : '20px'">
         <router-outlet></router-outlet>
     </main>
 </div>
-
 <app-toast></app-toast>

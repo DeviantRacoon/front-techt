@@ -1,153 +1,258 @@
 <section class="container-fluid p-1 mx-auto">
+  <!-- Componente de Detalle de Persona -->
   <app-person-detail></app-person-detail>
-  <article class="container">
+
+  <article class="bg-body rounded-bottom-5">
     <app-tabs>
+      <!-- Pestaña Overview -->
       <app-tab label="Overview">
         <ng-template>
+          <section class="mt-4">
+            <div class="row row-cols-1 row-cols-md-3 g-3">
+              <!-- Card 1: Información Personal -->
+              <article class="col">
+                <div class="card shadow-sm border-0 h-100">
+                  <div class="card-body">
+                    <h6 class="card-title fw-bold text-center">Información Personal</h6>
+                    <hr>
+                    <ul class="list-unstyled small">
+                      <li class="mb-2">
+                        <i class="fa fa-calendar text-muted"></i>
+                        <span class="ms-2 text-muted">Fecha de nacimiento:</span>
+                        <p class="text-dark fw-semibold mb-0">{{ user.birthDate | date: 'dd MMMM yyyy' }}</p>
+                      </li>
+                      <li class="mb-2">
+                        <i class="fa fa-map-marker text-muted"></i>
+                        <span class="ms-2 text-muted">Ubicación:</span>
+                        <p class="text-dark fw-semibold mb-0">{{ user.location }}</p>
+                      </li>
+                      <li class="mb-2">
+                        <i class="fa fa-phone text-muted"></i>
+                        <span class="ms-2 text-muted">Teléfono:</span>
+                        <p class="text-dark fw-semibold mb-0">{{ user.phone }}</p>
+                      </li>
+                      <li class="mb-2">
+                        <i class="fa fa-language text-muted"></i>
+                        <span class="ms-2 text-muted">Idiomas:</span>
+                        <p class="text-dark fw-semibold mb-0">{{ user.languages.join(', ') }}</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
 
-          <div class="row">
+              <!-- Card 2: Otra Información -->
+              <article class="col">
+                <div class="card shadow-sm border-0 h-100">
+                  <div class="card-body">
+                    <h6 class="card-title fw-bold text-center">Otra Información</h6>
+                    <hr>
+                    <p class="text-muted small">Aquí puedes agregar otra sección con datos adicionales.</p>
+                  </div>
+                </div>
+              </article>
 
-            <div class="card shadow-sm border-0 col-6">
-              <h6 class="card-title fw-bold mx-auto">
-                <span>Información Personal</span>
-              </h6>
-              <hr class="mt-0">
-  
-              <div class="card-body p-0">
-                <ul class="list-unstyled small mb-0">
-                  <li class="mb-2">
-                    <i class="fa fa-calendar small text-muted"></i>
-                    <span class="ms-2 small text-muted">Fecha de nacimiento:</span>
-                    <p class="text-dark fw-semibold mb-0">{{ user.birthDate | date: 'dd MMMM yyyy' }}</p>
-                  </li>
-  
-                  <li class="mb-2">
-                    <i class="fa fa-map-marker small text-muted"></i>
-                    <span class="ms-2 small text-muted">Ubicación:</span>
-                    <p class="text-dark fw-semibold mb-0">{{ user.location }}</p>
-                  </li>
-  
-                  <li class="mb-2">
-                    <i class="fa fa-phone small text-muted"></i>
-                    <span class="ms-2 small text-muted">Teléfono:</span>
-                    <p class="text-dark fw-semibold mb-0">{{ user.phone }}</p>
-                  </li>
-  
-                  <li class="mb-2">
-                    <i class="fa fa-language small text-muted"></i>
-                    <span class="ms-2 small text-muted">Idiomas:</span>
-                    <p class="text-dark fw-semibold mb-0">{{ user.languages.join(', ') }}</p>
-                  </li>
-                </ul>
-              </div>
+              <!-- Card 3: Más Información -->
+              <article class="col">
+                <div class="card shadow-sm border-0 h-100">
+                  <div class="card-body">
+                    <h6 class="card-title fw-bold text-center">Más Información</h6>
+                    <hr>
+                    <p class="text-muted small">Otra sección con contenido importante.</p>
+                  </div>
+                </div>
+              </article>
             </div>
-
-            <div class="card shadow-sm border-0 col-6">
-              <h6 class="card-title fw-bold mx-auto">
-                <span>Información Personal</span>
-              </h6>
-              <hr class="mt-0">
-  
-              <div class="card-body p-0">
-                <ul class="list-unstyled small mb-0">
-                  <li class="mb-2">
-                    <i class="fa fa-calendar small text-muted"></i>
-                    <span class="ms-2 small text-muted">Fecha de nacimiento:</span>
-                    <p class="text-dark fw-semibold mb-0">{{ user.birthDate | date: 'dd MMMM yyyy' }}</p>
-                  </li>
-  
-                  <li class="mb-2">
-                    <i class="fa fa-map-marker small text-muted"></i>
-                    <span class="ms-2 small text-muted">Ubicación:</span>
-                    <p class="text-dark fw-semibold mb-0">{{ user.location }}</p>
-                  </li>
-  
-                  <li class="mb-2">
-                    <i class="fa fa-phone small text-muted"></i>
-                    <span class="ms-2 small text-muted">Teléfono:</span>
-                    <p class="text-dark fw-semibold mb-0">{{ user.phone }}</p>
-                  </li>
-  
-                  <li class="mb-2">
-                    <i class="fa fa-language small text-muted"></i>
-                    <span class="ms-2 small text-muted">Idiomas:</span>
-                    <p class="text-dark fw-semibold mb-0">{{ user.languages.join(', ') }}</p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="card shadow-sm border-0 col-6">
-              <h6 class="card-title fw-bold mx-auto">
-                <span>Información Personal</span>
-              </h6>
-              <hr class="mt-0">
-  
-              <div class="card-body p-0">
-                <ul class="list-unstyled small mb-0">
-                  <li class="mb-2">
-                    <i class="fa fa-calendar small text-muted"></i>
-                    <span class="ms-2 small text-muted">Fecha de nacimiento:</span>
-                    <p class="text-dark fw-semibold mb-0">{{ user.birthDate | date: 'dd MMMM yyyy' }}</p>
-                  </li>
-  
-                  <li class="mb-2">
-                    <i class="fa fa-map-marker small text-muted"></i>
-                    <span class="ms-2 small text-muted">Ubicación:</span>
-                    <p class="text-dark fw-semibold mb-0">{{ user.location }}</p>
-                  </li>
-  
-                  <li class="mb-2">
-                    <i class="fa fa-phone small text-muted"></i>
-                    <span class="ms-2 small text-muted">Teléfono:</span>
-                    <p class="text-dark fw-semibold mb-0">{{ user.phone }}</p>
-                  </li>
-  
-                  <li class="mb-2">
-                    <i class="fa fa-language small text-muted"></i>
-                    <span class="ms-2 small text-muted">Idiomas:</span>
-                    <p class="text-dark fw-semibold mb-0">{{ user.languages.join(', ') }}</p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-          </div>
-
+          </section>
         </ng-template>
       </app-tab>
 
+      <!-- Pestaña Experiencia -->
       <app-tab label="Experience">
         <ng-template>
-          <div class="card">
-            <div class="card-body">
-              <h5>Experience</h5>
-              <p>Trabajo en múltiples empresas de tecnología...</p>
+          <section class="mt-4">
+            <div class="row row-cols-1 row-cols-md-3 g-3">
+              <!-- Card 1: Información Personal -->
+              <article class="col">
+                <div class="card shadow-sm border-0 h-100">
+                  <div class="card-body">
+                    <h6 class="card-title fw-bold text-center">Información Personal</h6>
+                    <hr>
+                    <ul class="list-unstyled small">
+                      <li class="mb-2">
+                        <i class="fa fa-calendar text-muted"></i>
+                        <span class="ms-2 text-muted">Fecha de nacimiento:</span>
+                        <p class="text-dark fw-semibold mb-0">{{ user.birthDate | date: 'dd MMMM yyyy' }}</p>
+                      </li>
+                      <li class="mb-2">
+                        <i class="fa fa-map-marker text-muted"></i>
+                        <span class="ms-2 text-muted">Ubicación:</span>
+                        <p class="text-dark fw-semibold mb-0">{{ user.location }}</p>
+                      </li>
+                      <li class="mb-2">
+                        <i class="fa fa-phone text-muted"></i>
+                        <span class="ms-2 text-muted">Teléfono:</span>
+                        <p class="text-dark fw-semibold mb-0">{{ user.phone }}</p>
+                      </li>
+                      <li class="mb-2">
+                        <i class="fa fa-language text-muted"></i>
+                        <span class="ms-2 text-muted">Idiomas:</span>
+                        <p class="text-dark fw-semibold mb-0">{{ user.languages.join(', ') }}</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 2: Otra Información -->
+              <article class="col">
+                <div class="card shadow-sm border-0 h-100">
+                  <div class="card-body">
+                    <h6 class="card-title fw-bold text-center">Otra Información</h6>
+                    <hr>
+                    <p class="text-muted small">Aquí puedes agregar otra sección con datos adicionales.</p>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 3: Más Información -->
+              <article class="col">
+                <div class="card shadow-sm border-0 h-100">
+                  <div class="card-body">
+                    <h6 class="card-title fw-bold text-center">Más Información</h6>
+                    <hr>
+                    <p class="text-muted small">Otra sección con contenido importante.</p>
+                  </div>
+                </div>
+              </article>
             </div>
-          </div>
+          </section>
         </ng-template>
       </app-tab>
 
+      <!-- Pestaña Educación -->
       <app-tab label="Education">
         <ng-template>
-          <div class="card">
-            <div class="card-body">
-              <h5>Education</h5>
-              <p>Grado en Ingeniería Informática...</p>
+          <section class="mt-4">
+            <div class="row row-cols-1 row-cols-md-3 g-3">
+              <!-- Card 1: Información Personal -->
+              <article class="col">
+                <div class="card shadow-sm border-0 h-100">
+                  <div class="card-body">
+                    <h6 class="card-title fw-bold text-center">Información Personal</h6>
+                    <hr>
+                    <ul class="list-unstyled small">
+                      <li class="mb-2">
+                        <i class="fa fa-calendar text-muted"></i>
+                        <span class="ms-2 text-muted">Fecha de nacimiento:</span>
+                        <p class="text-dark fw-semibold mb-0">{{ user.birthDate | date: 'dd MMMM yyyy' }}</p>
+                      </li>
+                      <li class="mb-2">
+                        <i class="fa fa-map-marker text-muted"></i>
+                        <span class="ms-2 text-muted">Ubicación:</span>
+                        <p class="text-dark fw-semibold mb-0">{{ user.location }}</p>
+                      </li>
+                      <li class="mb-2">
+                        <i class="fa fa-phone text-muted"></i>
+                        <span class="ms-2 text-muted">Teléfono:</span>
+                        <p class="text-dark fw-semibold mb-0">{{ user.phone }}</p>
+                      </li>
+                      <li class="mb-2">
+                        <i class="fa fa-language text-muted"></i>
+                        <span class="ms-2 text-muted">Idiomas:</span>
+                        <p class="text-dark fw-semibold mb-0">{{ user.languages.join(', ') }}</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 2: Otra Información -->
+              <article class="col">
+                <div class="card shadow-sm border-0 h-100">
+                  <div class="card-body">
+                    <h6 class="card-title fw-bold text-center">Otra Información</h6>
+                    <hr>
+                    <p class="text-muted small">Aquí puedes agregar otra sección con datos adicionales.</p>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 3: Más Información -->
+              <article class="col">
+                <div class="card shadow-sm border-0 h-100">
+                  <div class="card-body">
+                    <h6 class="card-title fw-bold text-center">Más Información</h6>
+                    <hr>
+                    <p class="text-muted small">Otra sección con contenido importante.</p>
+                  </div>
+                </div>
+              </article>
             </div>
-          </div>
+          </section>
         </ng-template>
       </app-tab>
 
+      <!-- Pestaña Habilidades -->
       <app-tab label="Skills">
         <ng-template>
-          <div class="card">
-            <div class="card-body">
-              <h5>Skills</h5>
-              <span class="badge bg-secondary">Angular</span>
-              <span class="badge bg-secondary">TypeScript</span>
+          <section class="mt-4">
+            <div class="row row-cols-1 row-cols-md-3 g-3">
+              <!-- Card 1: Información Personal -->
+              <article class="col">
+                <div class="card shadow-sm border-0 h-100">
+                  <div class="card-body">
+                    <h6 class="card-title fw-bold text-center">Información Personal</h6>
+                    <hr>
+                    <ul class="list-unstyled small">
+                      <li class="mb-2">
+                        <i class="fa fa-calendar text-muted"></i>
+                        <span class="ms-2 text-muted">Fecha de nacimiento:</span>
+                        <p class="text-dark fw-semibold mb-0">{{ user.birthDate | date: 'dd MMMM yyyy' }}</p>
+                      </li>
+                      <li class="mb-2">
+                        <i class="fa fa-map-marker text-muted"></i>
+                        <span class="ms-2 text-muted">Ubicación:</span>
+                        <p class="text-dark fw-semibold mb-0">{{ user.location }}</p>
+                      </li>
+                      <li class="mb-2">
+                        <i class="fa fa-phone text-muted"></i>
+                        <span class="ms-2 text-muted">Teléfono:</span>
+                        <p class="text-dark fw-semibold mb-0">{{ user.phone }}</p>
+                      </li>
+                      <li class="mb-2">
+                        <i class="fa fa-language text-muted"></i>
+                        <span class="ms-2 text-muted">Idiomas:</span>
+                        <p class="text-dark fw-semibold mb-0">{{ user.languages.join(', ') }}</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 2: Otra Información -->
+              <article class="col">
+                <div class="card shadow-sm border-0 h-100">
+                  <div class="card-body">
+                    <h6 class="card-title fw-bold text-center">Otra Información</h6>
+                    <hr>
+                    <p class="text-muted small">Aquí puedes agregar otra sección con datos adicionales.</p>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 3: Más Información -->
+              <article class="col">
+                <div class="card shadow-sm border-0 h-100">
+                  <div class="card-body">
+                    <h6 class="card-title fw-bold text-center">Más Información</h6>
+                    <hr>
+                    <p class="text-muted small">Otra sección con contenido importante.</p>
+                  </div>
+                </div>
+              </article>
             </div>
-          </div>
+          </section>
         </ng-template>
       </app-tab>
     </app-tabs>

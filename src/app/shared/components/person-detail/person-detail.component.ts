@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
@@ -17,43 +17,26 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ]
 })
 export class PersonDetailComponent {
-  user = {
+  @Input() user = {
     name: 'Sarah Johnson',
-    position: 'Senior Software Engineer',
-    location: 'San Francisco',
-    birthDate: 'June 15, 1990',
-    phone: '+1 (555) 123-4567',
-    languages: ['English', 'Spanish'],
-    interests: ['Technology', 'AI', 'Photography', 'Travel'],
-    experience: [
-      {
-        title: 'Senior Software Engineer',
-        company: 'Google',
-        years: '2020 - Present',
-        description: 'Leading cloud infrastructure projects.'
-      },
-      {
-        title: 'Software Engineer',
-        company: 'Microsoft',
-        years: '2017 - 2020',
-        description: 'Developed enterprise solutions using .NET.'
-      }
-    ],
-    education: [
-      {
-        degree: 'Master of Computer Science',
-        school: 'Stanford University',
-        years: '2015 - 2017',
-        description: 'Specialization in AI and ML'
-      },
-      {
-        degree: 'Bachelor of Engineering',
-        school: 'MIT',
-        years: '2011 - 2015',
-        description: 'Major in Computer Science'
-      }
-    ],
-    skills: ['JavaScript', 'Python', 'Java', 'C#', 'Angular', 'React', 'Docker', 'AWS', 'Google Cloud'],
-    certifications: ['AWS Certified Solutions Architect', 'Google Cloud Professional Developer']
-  };
+    location: 'New York, NY',
+    avatar: 'https://bootdey.com/img/Content/avatar/avatar7.png'
+  }
+
+  @Input() chips: { label: string; icon: string }[] = [
+    { label: 'Senior Level', icon: 'fa fa-star text-warning' },
+    { label: 'Full-time', icon: 'fa fa-briefcase' },
+    { label: 'New York, NY', icon: 'fa fa-map' }
+  ];
+
+  @Input() indicators: { label: string; icon: string }[] = [
+    { label: '67 Connections', icon: 'fa fa-users' },
+    { label: '2 Projects', icon: 'fa fa-chart-line' },
+    { label: '8 Years Experience', icon: 'fa fa-award' }
+  ]
+
+  @Input() actions: { label: string; icon: string }[] = [
+    { label: 'Message', icon: 'fa fa-envelope' },
+    { label: 'View Portfolio', icon: 'fa fa-briefcase' }
+  ]
 }

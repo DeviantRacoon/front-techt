@@ -36,7 +36,7 @@
         <tbody *ngIf="!loading">
           <tr *ngFor="let item of row" class="align-middle">
 
-            <td class="py-3 text-start" [ngClass]="selectedItems.has(item.id) ? 'bg-body-secondary' : ''">
+            <td class="py-1 text-start" [ngClass]="selectedItems.has(item.id) ? 'bg-body-secondary' : ''">
               <input type="checkbox" [checked]="selectedItems.has(item.id)" (change)="toggleSelection(item.id)">
             </td>
 
@@ -167,18 +167,18 @@
     </span>
 
     <nav class="pagination custom-pagination-mat" aria-label="Pagination">
-      <li class="page-item" [class.disabled]="currentPage === 1">
+      <li class="page-item" [class.disabled]="currentPage === 1" style="cursor: pointer;">
         <a class="page-link shadow-none border" (click)="changePage(currentPage - 1)" aria-label="Previous">
           <i class="fa fa-chevron-left"></i>
         </a>
       </li>
 
       <li *ngFor="let page of [].constructor(totalPages()); let i = index" class="page-item"
-        [class.active]="i + 1 === currentPage">
+        [class.active]="i + 1 === currentPage" style="cursor: pointer;">
         <a class="page-link shadow-none border" (click)="changePage(i + 1)">{{ i + 1 }}</a>
       </li>
 
-      <li class="page-item" [class.disabled]="currentPage === totalPages()">
+      <li class="page-item" [class.disabled]="currentPage === totalPages()" style="cursor: pointer;">
         <a class="page-link shadow-none border" (click)="changePage(currentPage + 1)" aria-label="Next">
           <i class="fa fa-chevron-right"></i>
         </a>

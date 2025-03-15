@@ -1,28 +1,46 @@
-<div class="position-relative bg-info-subtle pt-4 rounded-top">
-  <div class="profile-info ps-4 py-3">
-    <div class="d-flex justify-content-start align-items-center gap-4">
+<section class="bg-body-secondary rounded p-4 shadow-sm">
+  <article class="profile-info d-flex flex-wrap align-items-center gap-4 text-center text-md-start">
+    
+    <!-- 📷 Imagen de Perfil con Botón de Cambio -->
+    <figure class="rounded-circle shadow-sm border border-2 border-light-subtle position-relative mx-auto mx-md-0"
+      style="width: 120px; height: 120px; background: white;">
+      <img [src]="user.avatar" 
+        class="object-fit-cover w-100 h-100 rounded-circle" 
+        alt="Profile Picture" loading="lazy">
+      <button class="btn btn-sm btn-light position-absolute bottom-0 end-0 rounded-circle border shadow-sm px-2" 
+        aria-label="Change Profile Picture">
+        <i class="fa fa-camera"></i>
+      </button>
+    </figure>
 
-      <figure class="figure-img rounded-circle overflow-hidden" style="width: 150px; height: 150px;">
-        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80" class="object-fit-cover w-100 h-100"
-          alt="Profile Picture" loading="lazy">
-      </figure>
+    <!-- 🔹 Info del Usuario -->
+    <div class="flex-grow-1">
+      <h3 class="h4 fw-bold mb-1">{{ user.name }}</h3>
 
-      <span>
-        <h4 class="h3">{{ user.name }}</h4>
-        <div>
-          <div class="key-info mb-3">
-            <span class="badge bg-light text-dark me-2"><i class="fa fa-star text-warning"></i> Senior Level</span>
-            <span class="badge bg-light text-dark me-2"><i class="fa fa-briefcase"></i> Full-time</span>
-            <span class="badge bg-light text-dark"><i class="fa fa-map"></i> {{ user.location }}</span>
-          </div>
+      <!-- 🔹 Etiquetas de Información -->
+      <ul class="list-inline mb-3">
+        <li *ngFor="let chip of chips" class="list-inline-item">
+          <span class="badge bg-light text-dark">
+            <i [class]="chip.icon"></i> {{chip.label}}
+          </span>
+        </li>
+      </ul>
 
-          <div class="d-flex gap-2">
-            <button class="btn btn-sm btn-primary"><i class="fa fa-envelope"></i> Message</button>
-            <button class="btn btn-outline-light border d-flex align-items-center gap-2 shadow-none"><i class="fa fa-plus"></i> Connect</button>
-          </div>
-        </div>
-      </span>
+      <!-- 🔹 Indicadores Profesionales -->
+      <div class="d-flex gap-3 mb-3 justify-content-center justify-content-md-start">
+        <span *ngFor="let indicator of indicators" class="text-muted small"><i [class]="indicator.icon"></i> {{ indicator.label }}</span>
+      </div>
 
+      <!-- 🔹 Botones de Acción -->
+      <div *ngIf="actions.length" class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start" role="group">
+        <button class="btn btn-sm btn-primary d-flex align-items-center gap-2">
+          <i [class]="actions[0].icon"></i> {{ actions[0].label }}
+        </button>
+        <button *ngFor="let action of actions | slice:1" class="btn btn-sm btn-outline-light shadow-none borderd-flex align-items-center gap-2">
+          <i [class]="action.icon"></i> {{ action.label }}
+        </button>
+      </div>
     </div>
-  </div>
-</div>
+
+  </article>
+</section>

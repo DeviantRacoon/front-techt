@@ -16,8 +16,28 @@
   font-family: "Poppins", sans-serif;
 }
 
+html, body {
+  height: 100vh;
+  margin: 0;
+  overflow: hidden; /* Evita scroll en toda la pantalla */
+  display: flex;
+  flex-direction: column;
+}
+
 #content {
   display: flex;
-  margin-top: 68px;
   transition: margin-left 0.3s ease-in-out;
+  height: calc(100vh - 56px); /* Resta la altura del navbar (ajústalo si es diferente) */
 }
+
+#main {
+  flex-grow: 1;
+  overflow-y: auto; 
+  overflow-x: hidden; 
+  padding: 1rem;
+}
+
+.sidebar-collapsed #main {
+  margin-left: 40px;
+}
+

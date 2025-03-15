@@ -1,18 +1,18 @@
-// Angular
 import { Component, Output, EventEmitter } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent {
-  @Output() toggleSidebarEvent = new EventEmitter<Boolean>();
+  @Output() toggleSidebarEvent = new EventEmitter<boolean>();
   sidebarOpen = true;
+  activeLink: string = '';
 
   menuItems = [
     { label: 'Dashboard', icon: 'home-outline', link: '/' },
@@ -46,11 +46,18 @@ export class SidebarComponent {
 
   filteredMenuItems = [...this.menuItems];
 
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.activeLink = event.url;
+      }
+    });
+  }
+
   toggleSidebar() {
     this.sidebarOpen = !this.sidebarOpen;
     this.toggleSidebarEvent.emit(this.sidebarOpen);
-}
-
+  }
 
   filterMenu(event: any) {
     const searchTerm = event.target.value.toLowerCase();
@@ -62,5 +69,8 @@ export class SidebarComponent {
       return hasMatchingLabel || hasMatchingSubmenu;
     });
   }
-}
 
+  isActive(link: string): boolean {
+    return this.activeLink === link;
+  }
+}

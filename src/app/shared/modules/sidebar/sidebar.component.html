@@ -1,71 +1,45 @@
-<nav
-  id="sidebar"
-  class="sidebar-nav bg-body shadow-sm position-fixed"
-  [ngClass]="{ 'active': !sidebarOpen }"
+<nav id="sidebar" class="sidebar-nav bg-body shadow-sm position-fixed" [ngClass]="{ 'active': !sidebarOpen }"
   role="navigation">
-
   <!-- Botón de toggle -->
   <button
     class="btn btn-sm toggle-btn bg-body shadow border rounded-circle d-flex align-items-center justify-content-center end"
-    (click)="toggleSidebar()"
-    aria-label="Toggle sidebar">
+    (click)="toggleSidebar()" aria-label="Toggle sidebar">
     <i class="fa" [ngClass]="sidebarOpen ? 'fa-chevron-left' : 'fa-chevron-right'"></i>
   </button>
 
   <!-- Input de búsqueda -->
   <div class="mx-3 mt-2 border-bottom pb-2">
-    <input
-      type="text"
-      placeholder="Buscar..."
-      class="form-control form-control-sm input-menu-search bg-light"
-      aria-label="Buscar en el menú"
-      (input)="filterMenu($event)"
-    />
+    <input type="text" placeholder="Buscar..." class="form-control form-control-sm input-menu-search bg-light"
+      aria-label="Buscar en el menú" (input)="filterMenu($event)" />
   </div>
 
   <!-- Lista de menú -->
   <ul class="list-unstyled components mt-3">
     <li *ngFor="let item of filteredMenuItems">
-      
+      <!-- Menú con Submenú -->
       <div *ngIf="item.submenu && sidebarOpen; else singleLink">
-        <a [attr.data-bs-target]="'#collapse' + item.label.replace(' ', '')"
-          href="#"
-          class="nav-link d-flex align-items-center px-3 py-2 s"
-          data-bs-toggle="collapse"
-          role="button"
-        >
-          <img
-            [src]="'assets/svg/' + item.icon + '.svg'"
-            [alt]="item.label"
-            class="img-fluid me-2"
-            width="22"
-          />
+        <a class="nav-link d-flex align-items-center px-3 py-2" data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#collapse' + item.label.replace(' ', '')">
+          <img [src]="'assets/svg/' + item.icon + '.svg'" [alt]="item.label" class="img-fluid me-2" width="22" />
           <span class="menu-text small">{{ item.label }}</span>
           <i class="fa fa-chevron-down ms-auto menu-arrow"></i>
         </a>
-        
-        <ul
-          class="collapse list-unstyled ms-3 submenu"
-          [id]="'collapse' + item.label.replace(' ', '')">
+
+        <ul class="collapse list-unstyled ms-3 submenu" [id]="'collapse' + item.label.replace(' ', '')">
           <li *ngFor="let subItem of item.submenu">
-            <a [routerLink]="subItem.link"
-              class="nav-link d-flex align-items-center px-3 py-1"
-            >
+            <a [routerLink]="subItem.link" class="nav-link d-flex align-items-center px-3 py-1"
+              [class.active]="isActive(subItem.link)">
               <span class="ms-2 small">{{ subItem.label }}</span>
             </a>
           </li>
         </ul>
       </div>
 
+      <!-- Enlace de Menú Normal -->
       <ng-template #singleLink>
-        <a [routerLink]="item.link"
-          class="nav-link d-flex align-items-center px-3 py-2">
-          <img
-            [src]="'assets/svg/' + item.icon + '.svg'"
-            [alt]="item.label"
-            class="img-fluid me-2"
-            width="22"
-          />
+        <a [routerLink]="item.link" class="nav-link d-flex align-items-center px-3 py-2"
+          [class.active]="isActive(item.link!)">
+          <img [src]="'assets/svg/' + item.icon + '.svg'" [alt]="item.label" class="img-fluid me-2" width="22" />
           <span class="menu-text small">{{ item.label }}</span>
         </a>
       </ng-template>
