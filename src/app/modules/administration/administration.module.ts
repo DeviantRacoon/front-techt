@@ -4,9 +4,18 @@ import { CommonModule } from '@angular/common';
 
 // Component
 import { ListUserComponent } from './list-users/list-user.component';
+import { UserComponent } from './list-users/user/user.component';
 
 // Standalone
-import { TableComponent, HeadComponent, ModalComponent, ToastComponent } from 'src/app/shared/components';
+import {
+  TableComponent,
+  HeadComponent,
+  ModalComponent,
+  ToastComponent,
+  PersonDetailComponent,
+  TabsComponent,
+  TabItemComponent
+} from 'src/app/shared/components';
 
 // Routing
 import { AdministrationRoutes } from './administration.routing';
@@ -18,10 +27,11 @@ import { AdministrationRoutes } from './administration.routing';
     HeadComponent,
     ModalComponent,
     ToastComponent,
+    PersonDetailComponent,
+    TabsComponent,
+    TabItemComponent,
     AdministrationRoutes,
   ],
-  declarations: [
-    ListUserComponent
-  ]
+  declarations: [ListUserComponent, UserComponent],
 })
-export class AdministrationModule { }
+export class AdministrationModule {}

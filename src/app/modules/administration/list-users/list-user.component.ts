@@ -1,5 +1,6 @@
 // Angular
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 // Shared
 import { TColumn, TActionTable, TFilter, TRow } from 'src/app/shared/models';
@@ -16,10 +17,6 @@ export class ListUserComponent implements OnInit {
   loading: boolean = false;
   
   data: TRow[] = [];
-
-  printRow(item: any) {
-    console.log(item);  
-  };
 
   actions = [
     { icon: 'fa fa-eye', label: 'Ver', cta: (item: any) => console.log('Ver', item), color: 'primary' }
@@ -38,7 +35,15 @@ export class ListUserComponent implements OnInit {
   currentPage = 1;
   rowsPerPage = 10;
 
-  constructor(private toastService: ToastService) { }
+  constructor(
+    private toastService: ToastService,
+    private router: Router
+  ) { }
+
+
+  printRow(item: any) {
+    this.router.navigate(['/administration/list-users', item.id]);
+  };
 
   ngOnInit(): void {
     this.loading = true;
@@ -59,13 +64,13 @@ export class ListUserComponent implements OnInit {
       ];
       this.loading = false;
     }, 2000)
-  }
+  };
 
   onPageChange(page: number) {
     this.currentPage = page;
-  }
+  };
 
   onRowsPerPageChange(rows: number) {
     this.rowsPerPage = rows;
-  }
+  };
 }

@@ -5,3 +5,6 @@ export { FilterComponent } from './filter/filter.component';
 export { HeadComponent } from './head/head.component';
 export { ModalComponent } from './modal/modal.component';
 export { ToastComponent } from './toast/toast.component';
+export { PersonDetailComponent } from './person-detail/person-detail.component';
+export { TabItemComponent } from './tabs/tab-item.component';
+export { TabsComponent } from './tabs/tab.component';

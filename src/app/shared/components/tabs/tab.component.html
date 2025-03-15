@@ -1,0 +1,13 @@
+<ul class="tabs">
+  <li *ngFor="let tab of tabs.toArray(); let i = index"
+      [class.active]="i === selectedIndex"
+      (click)="selectTab(i)">
+    {{ tab.label | uppercase }}
+  </li>
+</ul>
+
+<div class="tab-content shadow-none w-100 p-0">
+  <ng-container *ngIf="selectedTab" [@tabAnimation]>
+    <ng-container *ngTemplateOutlet="selectedTab.content"></ng-container>
+  </ng-container>
+</div>

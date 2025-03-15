@@ -17,17 +17,26 @@ import { TFilter } from '../../models';
   imports: [CommonModule, FormsModule],
   animations: [
     trigger('dropdownAnimation', [
-      state('closed', style({ opacity: 0, transform: 'translateY(-10px)' })),
-      state('open', style({ opacity: 1, transform: 'translateY(0)' })),
+      state('closed', style({ 
+        opacity: 0, 
+        transform: 'translateY(-10px)', 
+        display: 'none' 
+      })),
+      state('open', style({ 
+        opacity: 1, 
+        transform: 'translateY(0)', 
+        display: 'block' 
+      })),
       transition('closed => open', [
-        style({ opacity: 0 }),
-        animate('200ms ease-out')
+        style({ display: 'block', opacity: 0 }), 
+        animate('200ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
       ]),
       transition('open => closed', [
-        animate('150ms ease-in', style({ opacity: 0, transform: 'translateY(-10px)' }))
+        animate('150ms ease-in', style({ opacity: 0, transform: 'translateY(-10px)' })),
+        style({ display: 'none' }) 
       ])
     ])
-  ]
+  ]  
 })
 export class FilterComponent implements OnInit {
   @Input() filters: TFilter[] = [];
